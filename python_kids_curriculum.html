@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python for Kids — 12-Day Deep Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#F5F4FF;color:#1a1a2e;font-size:16px;line-height:1.6}
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#3B1FA8 60%,#5B21B6 100%);padding:2.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.snake{font-size:3.5rem;display:block;margin-bottom:.5rem;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{font-size:2.4rem;font-weight:900;color:#fff;margin-bottom:.4rem}
+.hero-sub{font-size:1rem;color:#C4B5FD;font-weight:600;margin-bottom:1.5rem}
+.stats-row{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.stat-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1rem;color:#fff;font-size:.85rem;font-weight:700}
+.sticky{background:#fff;border-bottom:1px solid #E5E7EB;padding:.75rem 1.5rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.prog-label{font-size:.75rem;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:flex;justify-content:space-between}
+.prog-track{background:#E5E7EB;border-radius:100px;height:8px;overflow:hidden}
+.prog-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,#7C3AED,#0D9488);transition:width .5s ease}
+.day-dots{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.ddot{width:26px;height:26px;border-radius:50%;background:#E5E7EB;border:none;cursor:pointer;font-size:10px;font-weight:700;color:#6B7280;transition:all .2s;font-family:'Nunito',sans-serif}
+.ddot.done{background:#15803D;color:#fff}.ddot.active{background:#7C3AED;color:#fff;transform:scale(1.2)}
+.main{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.week-sec{margin-bottom:2.5rem}
+.week-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid #E5E7EB}
+.wbadge{padding:.3rem .9rem;border-radius:100px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;flex-shrink:0}
+.wbadge.w1{background:#EDE9FE;color:#5B21B6}.wbadge.w2{background:#CCFBF1;color:#065F46}.wbadge.w3{background:#FEF3C7;color:#92400E}.wbadge.w4{background:#FEE2E2;color:#991B1B}
+.week-title{font-size:1.3rem;font-weight:800}
+.week-goal{background:#DCFCE7;border-left:4px solid #15803D;border-radius:0 8px 8px 0;padding:.65rem 1rem;font-size:.88rem;color:#14532D;font-weight:600;margin-bottom:1.25rem}
+.dcard{background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;margin-bottom:1rem;overflow:hidden;transition:box-shadow .2s}
+.dcard:hover{box-shadow:0 4px 20px rgba(124,58,237,.1)}.dcard.done-card{border-color:#86EFAC}.dcard.open .exp-btn{transform:rotate(180deg)}
+.dhead{display:flex;align-items:center;gap:.9rem;padding:.9rem 1.1rem;cursor:pointer;user-select:none}
+.dnum{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:900;flex-shrink:0;background:#EDE9FE;color:#7C3AED}
+.dcard.done-card .dnum{background:#DCFCE7;color:#15803D}
+.dinfo{flex:1}.dlabel{font-size:.68rem;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em}
+.dtitle{font-size:1rem;font-weight:800}
+.dmeta{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.tpill{background:#FEF3C7;color:#D97706;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:100px}
+.exp-btn{background:none;border:none;cursor:pointer;font-size:1.1rem;color:#9CA3AF;transition:transform .3s;line-height:1}
+.done-btn{background:none;border:1.5px solid #E5E7EB;border-radius:100px;padding:3px 11px;font-size:.72rem;font-weight:700;cursor:pointer;color:#9CA3AF;font-family:'Nunito',sans-serif;transition:all .2s;white-space:nowrap}
+.done-btn:hover{border-color:#15803D;color:#15803D}.dcard.done-card .done-btn{background:#DCFCE7;border-color:#15803D;color:#15803D}
+.dbody{display:none;padding:0 1.1rem 1.1rem}.dcard.open .dbody{display:block}
+.timeline{display:flex;gap:0;margin-bottom:1.1rem;border-radius:10px;overflow:hidden;border:1px solid #E5E7EB}
+.tslot{flex:1;padding:6px 4px;text-align:center;font-size:.68rem;font-weight:800;line-height:1.3}
+.tslot.t-theory{background:#EDE9FE;color:#5B21B6}.tslot.t-guided{background:#DBEAFE;color:#1D4ED8}.tslot.t-project{background:#DCFCE7;color:#15803D}.tslot.t-hw{background:#FEF3C7;color:#92400E}
+.slabel{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin:1rem 0 .45rem;display:flex;align-items:center;gap:6px}
+.slabel span{display:inline-block;width:3px;height:14px;border-radius:2px;background:currentColor;opacity:.5}
+.theory-block{background:#F5F3FF;border:1px solid #DDD6FE;border-radius:12px;padding:.9rem 1rem;margin-bottom:.75rem}
+.theory-block h4{font-size:.9rem;font-weight:800;color:#5B21B6;margin-bottom:.5rem}
+.theory-block p{font-size:.85rem;color:#4B5563;margin-bottom:.4rem}
+.analogy{background:#FFF7ED;border-left:3px solid #F59E0B;border-radius:0 8px 8px 0;padding:.5rem .75rem;font-size:.82rem;color:#92400E;font-style:italic;margin-top:.5rem}
+.concept-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.ccchip{background:#EDE9FE;color:#5B21B6;font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:100px}
+.error-spot{background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:.7rem .9rem;margin:.5rem 0;font-size:.82rem;color:#991B1B}
+.error-spot strong{display:block;margin-bottom:2px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+.ex-list{display:flex;flex-direction:column;gap:7px;margin-bottom:.75rem}
+.ex-item{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:.65rem .9rem;display:flex;gap:8px;align-items:flex-start;font-size:.84rem}
+.ex-num{width:22px;height:22px;border-radius:50%;background:#EDE9FE;color:#7C3AED;font-size:.68rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.code-wrap{background:#1a1a2e;border-radius:10px;overflow:hidden;margin:.5rem 0;border:1px solid #3B1FA8}
+.code-top{background:#2d2b4e;padding:5px 12px;font-size:.7rem;color:#A78BFA;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.code-body{padding:.9rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.75;color:#C4B5FD;overflow-x:auto;white-space:pre}
+.kw{color:#F472B6}.fn{color:#A78BFA}.str{color:#34D399}.cm{color:#6B7280;font-style:italic}.num{color:#FCD34D}.op{color:#60A5FA}
+.output-preview{background:#0F172A;border-radius:8px;padding:.65rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#94A3B8;margin:.4rem 0;border:1px solid #1E293B;white-space:pre-wrap}
+.output-preview .out-label{color:#4ADE80;font-size:.68rem;display:block;margin-bottom:3px;font-family:'Nunito',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.project-box{background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:.9rem 1rem;margin:.75rem 0}
+.project-box h4{font-size:.88rem;font-weight:800;color:#15803D;margin-bottom:.5rem}
+.project-steps{display:flex;flex-direction:column;gap:5px}
+.pstep{display:flex;gap:8px;font-size:.82rem;color:#166534;align-items:flex-start}
+.pstep-num{width:20px;height:20px;border-radius:50%;background:#BBF7D0;color:#15803D;font-size:.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.stretch{background:#F0F9FF;border:1px solid #BAE6FD;border-radius:8px;padding:.5rem .75rem;font-size:.8rem;color:#0369A1;margin-top:.5rem;font-weight:600}
+.hw-box{background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:12px;padding:.9rem 1rem;margin-top:.9rem}
+.hw-title{font-size:.75rem;font-weight:800;color:#92400E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+.hw-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.hw-list li{font-size:.84rem;color:#78350F;display:flex;gap:7px;align-items:flex-start}
+.hw-list li::before{content:"✏️";flex-shrink:0}
+.hw-bonus{background:#EDE9FE;border-radius:8px;padding:5px 10px;font-size:.8rem;color:#5B21B6;font-weight:600;margin-top:.5rem}
+.quiz-strip{background:#F0F9FF;border:1px solid #BAE6FD;border-radius:10px;padding:.7rem 1rem;margin-top:.75rem}
+.quiz-strip strong{font-size:.75rem;color:#0369A1;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:.4rem}
+.quiz-qs{display:flex;flex-direction:column;gap:3px}
+.quiz-qs li{font-size:.82rem;color:#0C4A6E;list-style:none;padding-left:16px;position:relative}
+.quiz-qs li::before{content:"Q.";position:absolute;left:0;font-weight:700;color:#0369A1;font-size:.72rem}
+.oc-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.oc-chip{background:#CCFBF1;color:#065F46;font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:100px}
+.final{background:linear-gradient(135deg,#1a1a2e,#3B1FA8);border-radius:20px;padding:2.5rem 2rem;text-align:center;color:#fff;margin-top:2rem}
+.final h2{font-size:1.8rem;font-weight:900;margin-bottom:.4rem}
+.final p{color:#C4B5FD;margin-bottom:1.5rem}
+.nxt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.nxt{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:1rem;font-size:.82rem;color:#E5E7EB}
+.nxt strong{display:block;color:#A78BFA;margin-bottom:3px;font-size:.88rem}
+@media(max-width:600px){.dhead{flex-wrap:wrap}.dmeta{flex-wrap:wrap}.tslot{font-size:.6rem}}
+@media print{.sticky{display:none}.dcard.open .dbody,.dbody{display:block!important}.exp-btn,.done-btn{display:none}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <span class="snake">🐍</span>
+  <h1>Python for Kids</h1>
+  <p class="hero-sub">1-Month Adventure · 12 Days · 3 Days a Week · Absolute Beginner · Packed 45-min Sessions</p>
+  <div class="stats-row">
+    <div class="stat-pill">📅 4 Weeks</div>
+    <div class="stat-pill">🗓 12 × 45-min sessions</div>
+    <div class="stat-pill">🧠 Theory + Guided + Project every day</div>
+    <div class="stat-pill">🏆 Final: Rock Paper Scissors game</div>
+  </div>
+</div>
+<div class="sticky">
+  <div class="prog-label"><span>Your Progress</span><span id="progTxt">0 of 12 done</span></div>
+  <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="day-dots" id="dayDots"></div>
+</div>
+<div class="main">
+<!-- WEEK 1 -->
+<div class="week-sec">
+  <div class="week-hdr"><span class="wbadge w1">Week 1</span><span class="week-title">Variables, Input & Output 🐍</span></div>
+  <div class="week-goal">🎯 <strong>Goal:</strong> Kid can open Python, write programs, do math, store data in variables, and make interactive programs using input().</div>
+
+<!-- DAY 1 -->
+<div class="dcard" id="card-1">
+  <div class="dhead" onclick="toggleDay(1)">
+    <div class="dnum">1</div>
+    <div class="dinfo"><div class="dlabel">Week 1 · Day 1 · Monday</div><div class="dtitle">What is Python? + print() + Your First Programs</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-1" onclick="event.stopPropagation();markDone(1)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>What is a computer program?</h4>
+      <p>A program is an exact list of instructions for the computer. The computer follows them one by one, perfectly, with zero guessing. If you say "print hello" it prints hello. If you say nothing it does nothing. Python is the language we use to write those instructions — famous for reading almost like English.</p>
+      <div class="analogy">🧩 Analogy: Imagine a pet robot that only speaks "Python". You write instructions, the robot reads and obeys. Your file (.py) is the instruction manual. The robot never improvises — it does exactly what you wrote, even if what you wrote is wrong!</div>
+      <div class="concept-chips"><span class="ccchip">program = instructions</span><span class="ccchip">Python = the language</span><span class="ccchip">IDLE = where we write</span><span class="ccchip">.py = our file</span><span class="ccchip">run = execute the instructions</span></div>
+    </div>
+    <div class="theory-block">
+      <h4>print() — making Python speak</h4>
+      <p>print() is a command (called a function). Whatever you put inside the brackets and quotes gets shown on screen. The quotes say "this is text, not a command". No quotes → Python thinks it's a variable name and gets confused.</p>
+      <div class="error-spot"><strong>Show this error deliberately:</strong> print(Hello) → NameError: name 'Hello' is not defined. Fix: print("Hello"). Every beginner makes this. Errors are clues — always read the last line first.</div>
+    </div>
+    <div class="slabel"><span></span> Guided Coding — type every line together (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day1_guided.py</span><span>Type every line. Don't copy-paste!</span></div>
+      <div class="code-body"><span class="cm"># The # starts a comment — Python ignores it. Notes for humans!</span>
+
+<span class="fn">print</span>(<span class="str">"Hello, World!"</span>)
+<span class="fn">print</span>(<span class="str">"My name is Python 🐍"</span>)
+<span class="fn">print</span>(<span class="str">"Today I write my first program!"</span>)
+
+<span class="cm"># print() can do math — no quotes needed for numbers</span>
+<span class="fn">print</span>(<span class="num">5</span> + <span class="num">3</span>)
+<span class="fn">print</span>(<span class="num">10</span> - <span class="num">4</span>)
+<span class="fn">print</span>(<span class="num">3</span> <span class="op">*</span> <span class="num">7</span>)
+<span class="fn">print</span>(<span class="num">20</span> / <span class="num">4</span>)
+<span class="fn">print</span>(<span class="num">2</span> <span class="op">**</span> <span class="num">8</span>)   <span class="cm"># power: 2 to the 8th = 256</span>
+<span class="fn">print</span>(<span class="num">17</span> <span class="op">%</span> <span class="num">5</span>)   <span class="cm"># remainder: 17 ÷ 5 = 3 remainder 2</span>
+
+<span class="cm"># Mix text and math in one print</span>
+<span class="fn">print</span>(<span class="str">"5 + 3 ="</span>, <span class="num">5</span> + <span class="num">3</span>)
+
+<span class="cm"># Repeat a character using *</span>
+<span class="fn">print</span>(<span class="str">"="</span> <span class="op">*</span> <span class="num">30</span>)
+<span class="fn">print</span>(<span class="str">"🐍"</span> <span class="op">*</span> <span class="num">10</span>)</div>
+    </div>
+    <div class="output-preview"><span class="out-label">Expected output (partial)</span>Hello, World!
+My name is Python 🐍
+Today I write my first program!
+8
+6
+21
+5.0
+256
+2
+5 + 3 = 8
+==============================
+🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍</div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Experiment:</strong> What is the difference between print(5+3) and print("5+3")? Run both. One gives 8, the other gives the literal text "5+3". Discuss why.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Error exercise:</strong> Deliberately type pront("hello") — see the error. Read it aloud. Fix it. Then type print("hello" with a missing closing bracket — different error! Fix that too.</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>Discovery:</strong> What does 17 % 5 give? What does 20 % 4 give? What does X % 2 == 0 mean? (Even/odd — plant this seed for Week 2!)</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project — kid builds independently (22–40 min)</div>
+    <div class="project-box">
+      <h4>🎨 Project: "My Digital Poster"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">Build a decorated poster about yourself using only print(). Must have a title, a top/bottom border, at least 7 facts, and a math section.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Top border: print("=" * 35) — discuss: what does * do with text? (repeats it)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>Centered title using spaces: print("          MY PROFILE          ")</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Print at least 7 facts: name, age, city, school, favourite food, game, animal, colour</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>"Fun Math About Me" section: age × 365 (days alive), age × 365 × 24 (hours alive), age + 10 (future age)</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Bottom border and a sign-off line: print("Made with Python 🐍")</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Make a box border using print("|", "text", "|") style. Try making a simple ASCII drawing (face, house, or tree) using only print() statements with characters like |, -, /, \, *, ^.</div>
+    </div>
+    <div class="slabel"><span></span> End of Session (40–45 min)</div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz — answer out loud</strong>
+      <ul class="quiz-qs">
+        <li>What does print() do? What are the quotes for?</li>
+        <li>What is the difference between print(5+3) and print("5+3")?</li>
+        <li>How do you print the = character 40 times in one line?</li>
+        <li>What does # do in Python?</li>
+        <li>You get a NameError on print(Hello) — what went wrong?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Homework — due before Day 2</div>
+      <ul class="hw-list">
+        <li>Add 3 more facts to the poster that weren't discussed in class (dream job, lucky number, favourite movie).</li>
+        <li>Add a "Math Facts" section: print age × 365, that × 24, that × 60 (minutes alive!), and 2 ** age.</li>
+        <li>Intentionally write one line that causes an error. Fix it. Write down what the error message said.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Make Python print a simple ASCII art drawing — a house, tree, or rocket — using print() with characters like |, -, /, \, *, ^, and spaces.</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Opens IDLE confidently</span><span class="oc-chip">Uses print() for text and math</span><span class="oc-chip">Reads error messages</span><span class="oc-chip">Saves and runs .py files</span></div>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="dcard" id="card-2">
+  <div class="dhead" onclick="toggleDay(2)">
+    <div class="dnum">2</div>
+    <div class="dinfo"><div class="dlabel">Week 1 · Day 2 · Wednesday</div><div class="dtitle">Variables — Storing & Calculating with Data</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-2" onclick="event.stopPropagation();markDone(2)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>Variables — labelled boxes in memory</h4>
+      <p>Computer memory is a wall of boxes. Each box holds one value. A variable is the label on a box. name = "Aryan" creates a box, puts "Aryan" in it, sticks "name" on it. Write name later and Python fetches what's inside.</p>
+      <p>Three data types to know today: <strong>str</strong> (text in quotes), <strong>int</strong> (whole number, no quotes), <strong>float</strong> (decimal, no quotes). Use type() to check what you have.</p>
+      <div class="analogy">🧩 Analogy: Your school bag has labelled pockets — "books", "lunch", "pencils". Variables are those pockets. You label them, put things in, take things out, swap contents any time. The label stays; only what's inside changes.</div>
+      <div class="error-spot"><strong>Classic mistake:</strong> age = "11" looks right but "11" is text — you can't do math! age = 11 (no quotes) makes it a number. Demo both: age = "11" then print(age + 1) → TypeError. age = 11 then print(age + 1) → 12.</div>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day2_guided.py</span></div>
+      <div class="code-body"><span class="cm"># Creating variables of different types</span>
+<span class="kw">name</span> = <span class="str">"Aryan"</span>           <span class="cm"># str</span>
+<span class="kw">age</span> = <span class="num">11</span>                 <span class="cm"># int</span>
+<span class="kw">height_cm</span> = <span class="num">145</span>          <span class="cm"># int</span>
+<span class="kw">gpa</span> = <span class="num">8.5</span>               <span class="cm"># float</span>
+<span class="kw">likes_python</span> = <span class="kw">True</span>     <span class="cm"># bool — a 4th type! Just True/False</span>
+
+<span class="cm"># Check the type of any variable</span>
+<span class="fn">print</span>(<span class="fn">type</span>(name))        <span class="cm"># &lt;class 'str'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(age))         <span class="cm"># &lt;class 'int'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(gpa))         <span class="cm"># &lt;class 'float'&gt;</span>
+
+<span class="cm"># f-strings: best way to mix variables and text</span>
+<span class="fn">print</span>(<span class="str">f"My name is <span class="kw">{name}</span> and I am <span class="kw">{age}</span> years old."</span>)
+<span class="fn">print</span>(<span class="str">f"Height: <span class="kw">{height_cm}</span> cm = <span class="kw">{height_cm / 100}</span> metres"</span>)
+
+<span class="cm"># Variables can be updated — old value is replaced</span>
+<span class="fn">print</span>(<span class="str">f"Current age: <span class="kw">{age}</span>"</span>)
+<span class="kw">age</span> = age + <span class="num">1</span>
+<span class="fn">print</span>(<span class="str">f"Next year: <span class="kw">{age}</span>"</span>)
+
+<span class="cm"># Math with variables</span>
+<span class="kw">days_alive</span> = age <span class="op">*</span> <span class="num">365</span>
+<span class="kw">hours_alive</span> = days_alive <span class="op">*</span> <span class="num">24</span>
+<span class="fn">print</span>(<span class="str">f"Approximately <span class="kw">{days_alive}</span> days = <span class="kw">{hours_alive}</span> hours alive"</span>)
+
+<span class="cm"># Rounding floats</span>
+<span class="kw">height_m</span> = height_cm / <span class="num">100</span>
+<span class="fn">print</span>(<span class="str">f"Height in metres: <span class="kw">{round(height_m, 2)}</span>"</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Scope experiment:</strong> Try print(name + age) — TypeError! Can't add str + int. Fix with print(name + str(age)) or print(name + " is " + str(age)). Discuss why Python won't guess what you mean.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Accumulator:</strong> score = 0. Then score = score + 10 three times with a print after each. Watch the value build up. Ask: what does score = score + 10 mean step by step?</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>Discovery:</strong> Try score += 10 — shorthand for score = score + 10. Also show score *= 2. What do these mean? They're faster to write and very common in Python.</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🤖 Project: "Vital Statistics Calculator"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">Store personal data in variables, calculate surprising stats, print a formatted report. Every value must come from a variable — no hardcoding numbers in print statements.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Store: name (str), age (int), height_cm (int), weight_kg (float), birth_year (int), siblings (int)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>Calculate: days_alive, hours_alive, minutes_alive (days × 1440). Print each.</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Calculate: year turns 18, year turns 100 (birth_year + 18, +100). Height in inches (cm ÷ 2.54).</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Print a "Your Life By Numbers" report — sections with borders, all f-strings, all using variables.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Print type() of each variable in a "Data Types" section at the bottom.</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Use round(height_cm / 2.54, 1) for cleaner output. Try // (floor division): what does 145 // 30 give? What does it represent? (How many 30cm rulers fit in your height!)</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What is a variable? Give a real-world analogy.</li>
+        <li>What is wrong with age = "11" if you want to do math?</li>
+        <li>What does type(3.14) return?</li>
+        <li>How do you put a variable inside a sentence when printing?</li>
+        <li>I wrote name + age and got a TypeError. What's wrong and how do I fix it?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Homework — due before Day 3</div>
+      <ul class="hw-list">
+        <li>Create variables for a fictional character (superhero, cartoon, Bollywood star). Store name, age, power_level (int), city.</li>
+        <li>Calculate: days old, what year born (2025 - age), power_level squared (** 2), doubled, halved.</li>
+        <li>Print a "Character Profile" with 8+ lines, all using f-strings and variables. Use borders and sections.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Create TWO characters. Calculate which is older and by how many years. Print: "Character A is X years older than Character B." (just subtraction — no if/else needed yet)</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Creates & updates variables</span><span class="oc-chip">Knows str/int/float/bool</span><span class="oc-chip">Uses f-strings fluently</span><span class="oc-chip">Does variable math</span><span class="oc-chip">Uses type() and round()</span></div>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="dcard" id="card-3">
+  <div class="dhead" onclick="toggleDay(3)">
+    <div class="dnum">3</div>
+    <div class="dinfo"><div class="dlabel">Week 1 · Day 3 · Friday</div><div class="dtitle">input() — Interactive Programs That Listen</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-3" onclick="event.stopPropagation();markDone(3)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>input() — making programs interactive</h4>
+      <p>Until now all data was hardcoded. Real programs ask the user. input() pauses, shows a prompt, waits for the user to type and press Enter, then stores what they typed as a string.</p>
+      <p><strong>Critical:</strong> input() ALWAYS returns a string — even if the user types 42. To do math, convert first: int(input(...)) or float(input(...)). This is the #1 beginner mistake worldwide.</p>
+      <div class="analogy">🧩 Analogy: input() is a question box on a form. The text in quotes is the label on the box. The user writes their answer and hits Enter. Python stores it. If it's a number and you need to do math — wrap it in int() like a conversion machine.</div>
+      <div class="error-spot"><strong>Show this error deliberately:</strong> age = input("Age: ") then print(age + 1) → TypeError. Must use age = int(input("Age: ")). Demo: type 11 when asked, watch it fail, add int(), watch it work. This error appears more than any other in beginners' code.</div>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day3_guided.py</span></div>
+      <div class="code-body"><span class="cm"># Basic input — always returns str</span>
+<span class="kw">name</span> = <span class="fn">input</span>(<span class="str">"What is your name? "</span>)
+<span class="fn">print</span>(<span class="str">f"Hello, <span class="kw">{name}</span>! Welcome to Python!"</span>)
+<span class="fn">print</span>(<span class="str">f"Your name has <span class="kw">{len(name)}</span> letters."</span>)
+<span class="fn">print</span>(<span class="str">f"In CAPITALS: <span class="kw">{name.upper()}</span>"</span>)
+<span class="fn">print</span>(<span class="str">f"Reversed: <span class="kw">{name[::-1]}</span>"</span>)   <span class="cm"># sneak preview of slicing!</span>
+
+<span class="cm"># Input with type conversion</span>
+<span class="kw">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"\nHow old are you? "</span>))
+<span class="fn">print</span>(<span class="str">f"Next year you'll be <span class="kw">{age + 1}</span>."</span>)
+<span class="fn">print</span>(<span class="str">f"In 10 years: <span class="kw">{age + 10}</span>."</span>)
+<span class="fn">print</span>(<span class="str">f"You have lived approx <span class="kw">{age * 365}</span> days!"</span>)
+
+<span class="cm"># Float input for calculations</span>
+<span class="kw">num1</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"\nEnter first number: "</span>))
+<span class="kw">num2</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Enter second number: "</span>))
+<span class="fn">print</span>(<span class="str">f"\n{num1} + {num2} = {num1 + num2}"</span>)
+<span class="fn">print</span>(<span class="str">f"{num1} × {num2} = {num1 * num2}"</span>)
+<span class="fn">print</span>(<span class="str">f"{num1} ÷ {num2} = {round(num1 / num2, 3)}"</span>)
+
+<span class="cm"># String methods</span>
+<span class="kw">word</span> = <span class="fn">input</span>(<span class="str">"\nType any word: "</span>)
+<span class="fn">print</span>(<span class="str">f"Upper: <span class="kw">{word.upper()}</span>"</span>)
+<span class="fn">print</span>(<span class="str">f"Lower: <span class="kw">{word.lower()}</span>"</span>)
+<span class="fn">print</span>(<span class="str">f"Length: <span class="kw">{len(word)}</span>"</span>)
+<span class="fn">print</span>(<span class="str">f"Starts with first letter: <span class="kw">{word[0]}</span>"</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Type experiment:</strong> age = input("Age: ") — print(type(age)). It says str! Now age = int(input("Age: ")) — print(type(age)). Now it's int. The conversion is explicit — Python never assumes.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Crash test:</strong> Use int(input()) but type "hello" instead of a number. See ValueError. Discuss: this is why real programs validate input. We'll fix this properly with if/else (Week 2).</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>String methods:</strong> .upper(), .lower(), .strip(), .capitalize(), len(). What does "  hello  ".strip() give? Build intuition for the dot method syntax.</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🧮 Project: "Personal Fact Machine"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">Ask the user 6+ questions, then print a detailed "Did You Know?" report with calculated facts. Must use int(), float(), and string methods.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Ask: name, age, height_cm, weight_kg, shoe_size, favourite_number</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>Calculate and print: days alive, heartbeats alive (days × 100,000), height in inches (÷2.54), height in feet</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Calculate: fav number squared, cubed, doubled. How many times their name fits in 100 chars: 100 // len(name)</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Print the name in capitals, its length, and name reversed using name[::-1]</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Format as a proper "Your Life By Numbers" report with sections, borders, and sign-off</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Ask birth month as a number (1–12). Then do: months_list = ["","January","February","March","April","May","June","July","August","September","October","November","December"] and print months_list[month]. This secretly introduces lists — discuss it briefly!</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What does input() always return, no matter what the user types?</li>
+        <li>How do you get a usable number from input() for math?</li>
+        <li>I have name = input("Name: "). How do I print it in all capitals?</li>
+        <li>What does len("Python") return? What does len(name) do if name = "Aryan"?</li>
+        <li>User types "abc" when you ask for their age as int(input()). What happens?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Week 1 Homework — due before Day 4</div>
+      <ul class="hw-list">
+        <li>Build a "Trip Cost Calculator" — ask: distance (km), car speed (km/h), fuel efficiency (km per litre), fuel price (₹ per litre).</li>
+        <li>Calculate and print: travel time (hours and minutes), fuel needed (litres), total fuel cost (₹).</li>
+        <li>Also ask: number of passengers. Calculate cost per person.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Ask for start city and destination city names. Use them in the output: "Mumbai to Pune: 149 km". Use .capitalize() to ensure proper capitalisation.</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Uses input() correctly</span><span class="oc-chip">Converts with int() float()</span><span class="oc-chip">Uses string methods</span><span class="oc-chip">Built a full interactive program</span></div>
+  </div>
+</div>
+</div><!-- end week 1 -->
+<!-- WEEK 2 -->
+<div class="week-sec">
+  <div class="week-hdr"><span class="wbadge w2">Week 2</span><span class="week-title">Making Decisions — Conditionals & Logic 🧠</span></div>
+  <div class="week-goal">🎯 <strong>Goal:</strong> Kid can write if/elif/else conditions, use and/or/not, handle nested logic, and build programs that make smart multi-step decisions.</div>
+
+<!-- DAY 4 -->
+<div class="dcard" id="card-4">
+  <div class="dhead" onclick="toggleDay(4)">
+    <div class="dnum">4</div>
+    <div class="dinfo"><div class="dlabel">Week 2 · Day 4 · Monday</div><div class="dtitle">Booleans, Comparison Operators & if/else</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-4" onclick="event.stopPropagation();markDone(4)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>Booleans — Python's yes and no</h4>
+      <p>A boolean has exactly two values: True or False. Every comparison produces a boolean. 5 &gt; 3 → True. 10 == 5 → False. The computer uses these True/False results to decide which code to run.</p>
+      <div class="concept-chips"><span class="ccchip">== equal to</span><span class="ccchip">!= not equal</span><span class="ccchip">&gt; greater than</span><span class="ccchip">&lt; less than</span><span class="ccchip">&gt;= greater or equal</span><span class="ccchip">&lt;= less or equal</span></div>
+      <div class="error-spot"><strong>Most common mistake in Python forever:</strong> = assigns a value. == checks equality. Writing if x = 5 is a SyntaxError. Must be if x == 5. Burn this into memory — show the error deliberately every time.</div>
+    </div>
+    <div class="theory-block">
+      <h4>if/else — Python picks a path</h4>
+      <p>if: condition True → run this block. else: condition False → run that block instead. Exactly ONE branch ever runs. Indentation (4 spaces) tells Python which lines belong inside the block — it's not optional, it's the rule.</p>
+      <div class="analogy">🧩 Analogy: A fork in the road. Python reads the sign (condition). If True, takes the left road. If False, takes the right road. Both roads lead forward — but through different territory. Only one road is ever walked.</div>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day4_guided.py</span></div>
+      <div class="code-body"><span class="cm"># Booleans from comparisons</span>
+<span class="fn">print</span>(<span class="num">5</span> &gt; <span class="num">3</span>)             <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="num">10</span> == <span class="num">10</span>)          <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="str">"cat"</span> == <span class="str">"dog"</span>)    <span class="cm"># False</span>
+<span class="fn">print</span>(<span class="num">7</span> != <span class="num">3</span>)            <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="num">5</span> &gt; <span class="num">3</span>))       <span class="cm"># &lt;class 'bool'&gt;</span>
+
+<span class="cm"># if/else with input</span>
+<span class="kw">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"\nEnter your age: "</span>))
+
+<span class="kw">if</span> age >= <span class="num">18</span>:
+    <span class="fn">print</span>(<span class="str">"✅ You are an adult."</span>)
+    <span class="fn">print</span>(<span class="str">"You can vote and drive!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"⏳ You are a minor."</span>)
+    <span class="fn">print</span>(<span class="str">f"You need {18 - age} more years to vote."</span>)
+
+<span class="fn">print</span>(<span class="str">"This line always runs — outside the if block."</span>)
+
+<span class="cm"># Password checker</span>
+<span class="kw">secret</span> = <span class="str">"python123"</span>
+<span class="kw">guess</span> = <span class="fn">input</span>(<span class="str">"\nEnter the password: "</span>)
+
+<span class="kw">if</span> guess == secret:
+    <span class="fn">print</span>(<span class="str">"✅ Access granted! Welcome in."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"❌ Wrong password. Access denied."</span>)
+    <span class="fn">print</span>(<span class="str">f"Hint: the password has {len(secret)} characters."</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Indentation drill:</strong> Remove the 4 spaces before one print inside the if block → IndentationError. Fix it. Then add 6 spaces — Python also rejects inconsistent indentation. Show that 4 is the standard.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Always runs:</strong> Run with age 20 and age 10. Confirm the line outside the if always prints. Ask: what if there's no else — what happens when the condition is False?</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>Even/odd:</strong> Ask for a number. if num % 2 == 0: print("Even") else: print("Odd"). Connect to the % (remainder) from Day 1. This is the standard even/odd check.</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🎟 Project: "Theme Park Ticket Machine"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">A ticket pricing machine using if/elif/else. Different prices for different age groups. Calculates total cost.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Ask: visitor name and age using input()</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>If age &lt; 5 → Free. elif age &lt; 12 → ₹200. elif age &lt; 60 → ₹400. else (senior 60+) → ₹150</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Print a ticket: visitor name, age, ticket type ("Child"/"Adult"/"Senior"/"Free"), and price</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Ask how many tickets (same type). Calculate and print total cost.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Print a "Thank you for visiting!" sign-off with the park name</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Ask if they have a membership card (yes/no). If yes, apply 20% discount: total = total - (total * 0.2). Use round() to avoid messy decimals. Print original price, discount amount, and final price.</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What is the difference between = and ==?</li>
+        <li>What does 5 &gt; 3 evaluate to?</li>
+        <li>What happens if you forget to indent inside an if block?</li>
+        <li>If the if condition is False and there is no else, what happens?</li>
+        <li>How do you check if a number is even using %?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Homework — due before Day 5</div>
+      <ul class="hw-list">
+        <li>Build a "Number Analyser" — ask for a number, then run 3 SEPARATE if/else blocks: (1) positive or negative? (2) even or odd? (3) greater or less than 100?</li>
+        <li>Print all three results in a formatted analysis report.</li>
+        <li>Also add: if the number is 0, print "Zero is neither positive nor negative!" as a special case.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Add a 4th check — is the number divisible by both 2 and 3? (hint: num % 2 == 0 and num % 3 == 0 — we'll learn "and" properly tomorrow!)</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Uses all comparison operators</span><span class="oc-chip">Writes if/else correctly</span><span class="oc-chip">Understands indentation rules</span><span class="oc-chip">Built a ticket machine</span></div>
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="dcard" id="card-5">
+  <div class="dhead" onclick="toggleDay(5)">
+    <div class="dnum">5</div>
+    <div class="dinfo"><div class="dlabel">Week 2 · Day 5 · Wednesday</div><div class="dtitle">elif Chains + Logical Operators (and, or, not)</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-5" onclick="event.stopPropagation();markDone(5)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>elif — more than two paths</h4>
+      <p>if/else gives two choices. elif (else if) chains multiple conditions. Python checks them TOP TO BOTTOM, finds the FIRST True one, runs that block, skips ALL others — even if later conditions would also be True.</p>
+      <div class="analogy">🧩 Analogy: A restaurant menu check: "Veg meal? No → Chicken? No → Fish? No → Default meal." Python stops at the first yes. Order of your elif matters enormously.</div>
+    </div>
+    <div class="theory-block">
+      <h4>and, or, not — combining conditions</h4>
+      <p><strong>and</strong> — both must be True: age &gt; 10 and age &lt; 18 (teenager check)</p>
+      <p><strong>or</strong> — at least one True: color == "red" or color == "blue"</p>
+      <p><strong>not</strong> — flips True↔False: not is_raining</p>
+      <p>These let you ask complex questions in a single if without nesting.</p>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day5_guided.py</span></div>
+      <div class="code-body"><span class="cm"># Grade system with elif + input validation using or</span>
+<span class="kw">marks</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter marks (0–100): "</span>))
+
+<span class="kw">if</span> marks &gt; <span class="num">100</span> <span class="kw">or</span> marks &lt; <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">"❌ Invalid! Marks must be between 0 and 100."</span>)
+<span class="kw">elif</span> marks >= <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">"🏆 A+ — Outstanding! Top of the class!"</span>)
+<span class="kw">elif</span> marks >= <span class="num">75</span>:
+    <span class="fn">print</span>(<span class="str">"😊 A — Excellent work!"</span>)
+<span class="kw">elif</span> marks >= <span class="num">60</span>:
+    <span class="fn">print</span>(<span class="str">"👍 B — Good. Keep pushing!"</span>)
+<span class="kw">elif</span> marks >= <span class="num">40</span>:
+    <span class="fn">print</span>(<span class="str">"📚 C — Needs more practice."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"❌ F — Don't give up. Revise and retry!"</span>)
+
+<span class="cm"># and operator — both conditions required</span>
+<span class="kw">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"\nYour age: "</span>))
+<span class="kw">ticket</span> = <span class="fn">input</span>(<span class="str">"Have a ticket? (yes/no): "</span>)
+
+<span class="kw">if</span> age >= <span class="num">12</span> <span class="kw">and</span> ticket == <span class="str">"yes"</span>:
+    <span class="fn">print</span>(<span class="str">"✅ Entry allowed!"</span>)
+<span class="kw">elif</span> age < <span class="num">12</span> <span class="kw">and</span> ticket == <span class="str">"yes"</span>:
+    <span class="fn">print</span>(<span class="str">"❌ Under 12s not admitted."</span>)
+<span class="kw">elif</span> ticket == <span class="str">"no"</span>:
+    <span class="fn">print</span>(<span class="str">"❌ No ticket, no entry!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"⚠ Please answer yes or no."</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Order trap:</strong> Swap the elif marks &gt;= 90 and elif marks &gt;= 75 lines. Enter marks = 95. What happens? It now prints "A" instead of "A+". Python found marks &gt;= 75 first. Order of elif is critical!</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Truth table on paper:</strong> Draw a grid: True/True, True/False, False/True, False/False. Fill in results for and and or. Confirm each with Python. This visual stays in memory.</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>not experiment:</strong> is_raining = True. print(not is_raining) → False. print(not False) → True. When is "not" useful? When you want "if NOT something" — if not is_logged_in: ask_to_login()</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🌍 Project: "Country Knowledge Quiz"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">A quiz about a country with 4 questions, score tracking, and a final verdict. Uses elif chains and logical operators throughout.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Pick any country. Store: capital (str), population_millions (int), continent (str), area_km2 (int)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>Q1 (capital): accept correct answer in any case using .lower() on input. Correct → score += 1, print "Correct!" + fun fact. Wrong → print correct answer.</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Q2 (population): user guesses in millions. If within ±5M → "Spot on!" (+1). ±20M → "Close!" (0). Outside → "Way off" (0). Use and with &gt;= and &lt;= to build the range check.</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Q3 (continent): accept two spellings (e.g. "asia" or "Asian continent"). Use or.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Print final score with an elif verdict: 3/3 "Geography genius!", 2/3 "Good knowledge!", 1/3 "Keep learning!", 0/3 "Better luck next time!"</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Add a 4th "True or False" question. If the answer is correct AND the user answered in under (can't time it, so just check) a specific format, award a bonus star to the output.</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What is elif short for?</li>
+        <li>If marks = 85 in our grade checker, which branch runs? Why doesn't marks &gt;= 60 also run?</li>
+        <li>What does "and" require vs what does "or" require?</li>
+        <li>What does not True equal?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Homework — due before Day 6</div>
+      <ul class="hw-list">
+        <li>Build a "Season and Weather Advisor" — ask temperature AND if it is raining (yes/no). Use and/or to produce at least 6 different outcome messages based on combinations.</li>
+        <li>Also handle invalid temperature (below -50 or above 60): print "That's not real Earth weather!" before giving advice.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Add a third input — is it daytime or night? Use it in combination with the others for 8+ possible outcomes.</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Writes elif chains</span><span class="oc-chip">Uses and / or / not</span><span class="oc-chip">Input validation</span><span class="oc-chip">Tracks a score variable</span></div>
+  </div>
+</div>
+
+<!-- DAY 6 -->
+<div class="dcard" id="card-6">
+  <div class="dhead" onclick="toggleDay(6)">
+    <div class="dnum">6</div>
+    <div class="dinfo"><div class="dlabel">Week 2 · Day 6 · Friday</div><div class="dtitle">Nested if + String Tricks + Mini Text Adventure</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-6" onclick="event.stopPropagation();markDone(6)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>Nested if — conditions inside conditions</h4>
+      <p>Put an if inside another if. The inner if only runs if the outer if's condition was True. Each nesting level adds 4 more spaces. Python knows which level you're at by counting indentation.</p>
+      <div class="analogy">🧩 Analogy: "IF you're at school → IF you finished homework → free period. ELSE → detention." The homework check only matters if you're actually at school first.</div>
+    </div>
+    <div class="theory-block">
+      <h4>String comparisons + the "in" keyword</h4>
+      <p>"Yes" ≠ "yes" ≠ "YES" in Python. Always use .lower().strip() on user input before comparing so any capitalisation works.</p>
+      <p>The <strong>in</strong> keyword checks if something exists inside something else: "py" in "python" → True. "mango" in ["apple","mango","banana"] → True. Very useful!</p>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day6_guided.py</span></div>
+      <div class="code-body"><span class="cm"># Nested if — ride checker</span>
+<span class="kw">height</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Your height in cm: "</span>))
+<span class="kw">with_parent</span> = <span class="fn">input</span>(<span class="str">"Are you with a parent? (yes/no): "</span>).<span class="fn">lower</span>().<span class="fn">strip</span>()
+
+<span class="kw">if</span> height >= <span class="num">140</span>:
+    <span class="fn">print</span>(<span class="str">"✅ You're tall enough for the ride!"</span>)
+    <span class="kw">if</span> with_parent == <span class="str">"yes"</span>:
+        <span class="fn">print</span>(<span class="str">"Ride solo or with your parent — your choice!"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">"You can ride solo. Have fun!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">f"❌ {140 - height} cm too short for this ride."</span>)
+    <span class="kw">if</span> with_parent == <span class="str">"yes"</span>:
+        <span class="fn">print</span>(<span class="str">"You can try the kiddie rides with your parent!"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">"Come back with a parent for the junior section."</span>)
+
+<span class="cm"># "in" keyword — powerful string searching</span>
+<span class="kw">sentence</span> = <span class="fn">input</span>(<span class="str">"\nType a sentence: "</span>).<span class="fn">lower</span>()
+<span class="kw">if</span> <span class="str">"python"</span> <span class="kw">in</span> sentence:
+    <span class="fn">print</span>(<span class="str">"🐍 You mentioned Python! Great taste."</span>)
+<span class="kw">if</span> <span class="str">"love"</span> <span class="kw">in</span> sentence <span class="kw">or</span> <span class="str">"like"</span> <span class="kw">in</span> sentence:
+    <span class="fn">print</span>(<span class="str">"😊 You used a positive word!"</span>)
+<span class="kw">if</span> <span class="str">"hate"</span> <span class="kw">in</span> sentence:
+    <span class="fn">print</span>(<span class="str">"😮 Strong word! Are you ok?"</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>4-scenario test:</strong> Test all combinations: tall+parent, tall+no parent, short+parent, short+no parent. All 4 must print different correct messages. If any fails, debug together.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Case sensitivity demo:</strong> Remove .lower() from with_parent. Type "Yes" with capital Y. Show the comparison fails. Add .lower() back. Show the fix. This is why .lower() matters every time.</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>in with lists preview:</strong> colours = ["red","blue","green"]. if "red" in colours: print("Found!"). This sneakily introduces lists — note it, we'll cover it properly Week 3.</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🏰 Project: "Two-Room Text Adventure"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">An interactive story using nested if/else. Kid chooses the theme. Must have 3 decision points and at least 4 different endings.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Ask for player name. Print an introduction — set the scene (castle, forest, spaceship — kid chooses!)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>Choice 1 (outer if): "Go left or right?" Each leads to a different room. Use .lower().strip() on input.</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Inside each room (nested if): a second choice. E.g. "Pick up sword or run?" / "Open door or hide?"</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Each of the 4 final outcomes must print a unique ending: win, escape, treasure, or game over.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Use .lower().strip() on ALL inputs. Use the "in" keyword for at least one check (e.g. if "run" in choice or "flee" in choice)</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Add a secret path — if the player types a specific hidden word at any prompt (e.g. "xyzzy"), they get a special bonus ending that bypasses normal logic!</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What is a nested if? When do you need one?</li>
+        <li>Why do we use .lower() on user input before comparing?</li>
+        <li>What does "python" in "I love python" return?</li>
+        <li>If the outer if is False, does the nested if inside it ever run?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Week 2 Homework — due before Day 7</div>
+      <ul class="hw-list">
+        <li>Extend the text adventure to THREE decision levels (3 levels of nesting). At least 6 different endings.</li>
+        <li>Add a health variable starting at 100. Certain bad choices reduce health by 25. If health hits 0, print "You have fainted! Game Over." and end that branch.</li>
+        <li>Print remaining health at the end of each path.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Add an inventory — if the player picks up an item (store as a variable), later doors should check for it: if has_key == True (or False) before letting them through.</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Writes nested if/else</span><span class="oc-chip">Uses .lower() .strip()</span><span class="oc-chip">Uses "in" keyword</span><span class="oc-chip">Built a text adventure</span></div>
+  </div>
+</div>
+</div><!-- end week 2 -->
+<!-- WEEK 3 -->
+<div class="week-sec">
+  <div class="week-hdr"><span class="wbadge w3">Week 3</span><span class="week-title">Loops & Lists — Automation & Collections 🔄</span></div>
+  <div class="week-goal">🎯 <strong>Goal:</strong> Kid writes for/while loops confidently, works with lists (create, access, modify, loop, slice), and uses loops to automate repetitive tasks. Every exercise fills the 45 minutes.</div>
+
+<!-- DAY 7 -->
+<div class="dcard" id="card-7">
+  <div class="dhead" onclick="toggleDay(7)">
+    <div class="dnum">7</div>
+    <div class="dinfo"><div class="dlabel">Week 3 · Day 7 · Monday</div><div class="dtitle">for Loops — Repeating With Purpose</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-7" onclick="event.stopPropagation();markDone(7)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>for loops — when you know what you're looping through</h4>
+      <p>A for loop runs a block of code once for each item in a sequence. You use it when you know exactly what you're looping through — a range of numbers, every letter in a word, every item in a list.</p>
+      <p>range(5) → 0,1,2,3,4. range(1,6) → 1,2,3,4,5. range(0,10,2) → 0,2,4,6,8. The END number is NEVER included — beginners always forget this.</p>
+      <div class="analogy">🧩 Analogy: "For each student in the classroom, give them a textbook." You go through every student in order, doing the same thing. A for loop is exactly this — go through a defined set, perform the same action on each one.</div>
+      <div class="concept-chips"><span class="ccchip">range(n) → 0 to n-1</span><span class="ccchip">range(a,b) → a to b-1</span><span class="ccchip">range(a,b,step)</span><span class="ccchip">for x in collection:</span><span class="ccchip">accumulator = 0 before loop</span></div>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day7_guided.py</span></div>
+      <div class="code-body"><span class="cm"># Basic for loop — range experiments</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(<span class="str">f"Step {i}"</span>)       <span class="cm"># 0,1,2,3,4</span>
+
+<span class="cm"># Multiplication table</span>
+<span class="kw">n</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"\nWhich table? "</span>))
+<span class="fn">print</span>(<span class="str">f"\n{'='*20}"</span>)
+<span class="fn">print</span>(<span class="str">f"  TABLE OF {n}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'='*20}"</span>)
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>):
+    <span class="fn">print</span>(<span class="str">f"  {n} × {i:2} = {n*i}"</span>)
+
+<span class="cm"># Accumulator pattern — summing with a loop</span>
+<span class="kw">total</span> = <span class="num">0</span>                    <span class="cm"># accumulator starts at 0</span>
+<span class="kw">for</span> num <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>):
+    <span class="kw">total</span> = total + num        <span class="cm"># add each number</span>
+    <span class="fn">print</span>(<span class="str">f"  Added {num}, total now = {total}"</span>)
+<span class="fn">print</span>(<span class="str">f"Final sum: {total}"</span>)
+
+<span class="cm"># Loop through a string — each character</span>
+<span class="kw">word</span> = <span class="fn">input</span>(<span class="str">"\nType your name: "</span>)
+<span class="kw">vowels</span> = <span class="num">0</span>
+<span class="kw">for</span> letter <span class="kw">in</span> word.<span class="fn">lower</span>():
+    <span class="kw">if</span> letter <span class="kw">in</span> <span class="str">"aeiou"</span>:
+        <span class="fn">print</span>(<span class="str">f"  {letter} ← vowel!"</span>)
+        <span class="kw">vowels</span> += <span class="num">1</span>
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">f"  {letter}"</span>)
+<span class="fn">print</span>(<span class="str">f"Vowels in your name: {vowels}"</span>)
+
+<span class="cm"># Countdown with step -1</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>, <span class="num">0</span>, -<span class="num">1</span>):
+    <span class="fn">print</span>(i, <span class="fn">end</span>=<span class="str">" "</span>)
+<span class="fn">print</span>(<span class="str">"🚀 BLAST OFF!"</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>range experiments:</strong> Change range(5) to range(0,5) — same. range(2,8) — what prints? range(0,20,4) — what? range(10,0,-1) — what? Build intuition by predicting BEFORE running.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Accumulator visible:</strong> The print inside the sum loop shows total growing each step. Ask: what does total = 0 BEFORE the loop do? What if you put it INSIDE the loop? Try it — total resets every time!</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>Nested loop preview:</strong> Put a for loop inside a for loop — print a 3×3 grid of stars. The outer loop runs 3 times; the inner loop runs 3 times for EACH outer loop. 3×3 = 9 total iterations.</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>📊 Project: "Multiplication Table Book"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">Print a full neat multiplication book for a range of tables. Uses nested loops, accumulators, and formatted output. Genuinely fills 18 minutes.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Ask: start table and end table (e.g. 2 to 5). Outer for loop: for n in range(start, end+1)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>Print a header for each table: "=== TABLE OF 3 ===" with a border made by "=" * 25</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Inner for loop: print each row. After the inner loop, calculate and print the SUM of all products in that table.</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Track a grand_total accumulator across ALL tables. Print the grand total at the very end.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Add a divider between each table: print("~" * 25). Also print how many tables were printed.</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: For each row, add "EVEN" or "ODD" based on whether n×i is even. Also add a column showing whether each product is divisible by 5 — print "÷5 ✓" when it is.</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What does range(1, 11) give? What's the last number?</li>
+        <li>I want even numbers from 2 to 20. What does range() look like?</li>
+        <li>Where does the accumulator variable go — inside or outside the loop?</li>
+        <li>Can I loop through a string with a for loop? What does the loop variable hold each time?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Homework — due before Day 8</div>
+      <ul class="hw-list">
+        <li>Print a right-triangle pattern using nested loops: row 1 has 1 star, row 2 has 2, row 3 has 3... up to row 7.</li>
+        <li>Then print an inverted triangle (7 down to 1). Both in the same program.</li>
+        <li>Also: find all numbers from 1 to 100 divisible by 7. Print each one and count how many total.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Print a full diamond (triangle going up to 7, then back down to 1). This is genuinely challenging and impressive — give it a real try!</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Uses range() fluently</span><span class="oc-chip">Loops through strings</span><span class="oc-chip">Accumulator pattern</span><span class="oc-chip">Nested loops</span></div>
+  </div>
+</div>
+
+<!-- DAY 8 -->
+<div class="dcard" id="card-8">
+  <div class="dhead" onclick="toggleDay(8)">
+    <div class="dnum">8</div>
+    <div class="dinfo"><div class="dlabel">Week 3 · Day 8 · Wednesday</div><div class="dtitle">while Loops + Lists — Dynamic Repetition & Collections</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-8" onclick="event.stopPropagation();markDone(8)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>while loops — when you DON'T know how many times</h4>
+      <p>while keeps running as long as a condition is True. You use it when the number of repetitions depends on what happens at runtime — like "keep asking until the user gets it right."</p>
+      <p><strong>break</strong> exits the loop immediately. <strong>continue</strong> skips the rest of this iteration and goes back to the top. Always make sure your while loop can eventually stop — an infinite loop freezes the program!</p>
+      <div class="analogy">🧩 Analogy: A turnstile at a metro station. WHILE there are passengers coming through, keep spinning. You don't know in advance how many passengers there will be. You only stop when they stop coming (or break is called).</div>
+    </div>
+    <div class="theory-block">
+      <h4>Lists — storing multiple values in one variable</h4>
+      <p>A list holds multiple values in order: fruits = ["apple","mango","banana"]. Access by index (starting at 0): fruits[0] → "apple". fruits[-1] → last item. Key methods: .append(x), .remove(x), .pop(), len(list), x in list.</p>
+      <div class="error-spot"><strong>IndexError demo:</strong> Try fruits[10] on a 3-item list → IndexError: list index out of range. Indices run from 0 to len(list)-1. Show fruits[-1] as a safe way to get the last item without knowing the length.</div>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day8_guided.py</span></div>
+      <div class="code-body"><span class="kw">import</span> random
+
+<span class="cm"># while True + break — number guessing game</span>
+<span class="kw">secret</span> = <span class="fn">random.randint</span>(<span class="num">1</span>, <span class="num">50</span>)
+<span class="kw">attempts</span> = <span class="num">0</span>
+<span class="fn">print</span>(<span class="str">"Guess my number (1–50)!"</span>)
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="kw">guess</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Your guess: "</span>))
+    <span class="kw">attempts</span> += <span class="num">1</span>
+    <span class="kw">if</span> guess == secret:
+        <span class="fn">print</span>(<span class="str">f"🎉 Correct in {attempts} attempt(s)!"</span>)
+        <span class="kw">break</span>
+    <span class="kw">elif</span> guess < secret:
+        <span class="fn">print</span>(<span class="str">"📈 Higher!"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">"📉 Lower!"</span>)
+
+<span class="cm"># Lists — creation, access, modification</span>
+<span class="kw">fruits</span> = [<span class="str">"apple"</span>, <span class="str">"mango"</span>, <span class="str">"banana"</span>, <span class="str">"orange"</span>]
+<span class="fn">print</span>(<span class="str">f"\nFirst: {fruits[0]}"</span>)
+<span class="fn">print</span>(<span class="str">f"Last: {fruits[-1]}"</span>)
+<span class="fn">print</span>(<span class="str">f"Count: {len(fruits)}"</span>)
+
+<span class="cm"># Loop through a list</span>
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="fn">print</span>(<span class="str">f"  🍎 {fruit.capitalize()}"</span>)
+
+<span class="cm"># Modifying lists</span>
+fruits.<span class="fn">append</span>(<span class="str">"grapes"</span>)
+<span class="fn">print</span>(<span class="str">f"\nAfter append: {fruits}"</span>)
+fruits.<span class="fn">remove</span>(<span class="str">"banana"</span>)
+<span class="fn">print</span>(<span class="str">f"After remove: {fruits}"</span>)
+<span class="fn">print</span>(<span class="str">f"'mango' in list? {'mango' in fruits}"</span>)
+
+<span class="cm"># while loop to build a list from user input</span>
+<span class="kw">my_list</span> = []
+<span class="fn">print</span>(<span class="str">"\nAdd items (type 'done' to stop):"</span>)
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="kw">item</span> = <span class="fn">input</span>(<span class="str">"  → "</span>)
+    <span class="kw">if</span> item.<span class="fn">lower</span>() == <span class="str">"done"</span>: <span class="kw">break</span>
+    my_list.<span class="fn">append</span>(item)
+<span class="fn">print</span>(<span class="str">f"Your list: {my_list} ({len(my_list)} items)"</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Index crash:</strong> Deliberately access fruits[10] — IndexError. Then show fruits[-1] and fruits[-2]. Negative indexing counts from the end. Very useful and very Pythonic.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Loop with index:</strong> Use for i in range(len(fruits)) then print(i, fruits[i]) — now you have both the position and the value. Compare with for fruit in fruits — which is better when? (Usually the simpler one.)</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>Remove safety:</strong> Try fruits.remove("xyz") — ValueError because "xyz" isn't in the list. Show: use if "xyz" in fruits: before removing. Safe removal pattern.</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🛒 Project: "Interactive Shopping List Manager"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">A full menu-driven app. while loop + if/elif for menu. All list operations. Must handle errors gracefully.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Start: shopping = []. Display a menu: 1=Add item, 2=Remove item, 3=View all, 4=Search, 5=Quit</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>while True loop. Option 1: append. Option 2: check if item is in list BEFORE removing — print "Not found!" if missing.</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Option 3: if list is empty print "Your list is empty!". Otherwise loop through and print with numbers: "1. Milk  2. Eggs"</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Option 4: search — ask what to find, print "Found!" or "Not in your list" using in.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Option 5: print total items, the sorted list, then break.</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Add option 6 = "Clear all". Ask "Are you sure? (yes/no)" — if yes: shopping = []. If no: go back to menu. This teaches confirmation dialogs!</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>When do you use while instead of for?</li>
+        <li>What is the index of the LAST item in a 5-item list?</li>
+        <li>How do you safely remove an item that might not be in the list?</li>
+        <li>What does break do inside a while True loop?</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Homework — due before Day 9</div>
+      <ul class="hw-list">
+        <li>Build a "Score Tracker" — while loop that keeps asking for exam scores until the user types -1. Store all scores in a list.</li>
+        <li>Print: total count, highest score, lowest score, average (sum ÷ count).</li>
+        <li>Also print all scores that are ABOVE average (loop through the list with an if).</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Sort the scores and print them lowest to highest. Then assign a grade to each using your get_grade elif chain. Print name of grade next to each score.</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Writes while loops</span><span class="oc-chip">Uses break</span><span class="oc-chip">Creates and modifies lists</span><span class="oc-chip">Built a menu-driven app</span></div>
+  </div>
+</div>
+
+<!-- DAY 9 -->
+<div class="dcard" id="card-9">
+  <div class="dhead" onclick="toggleDay(9)">
+    <div class="dnum">9</div>
+    <div class="dinfo"><div class="dlabel">Week 3 · Day 9 · Friday</div><div class="dtitle">List Power — Slicing, Sorting, Built-ins + Quiz Engine</div></div>
+    <div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-9" onclick="event.stopPropagation();markDone(9)">✓ Mark done</button><button class="exp-btn">▼</button></div>
+  </div>
+  <div class="dbody">
+    <div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+    <div class="slabel"><span></span> Theory (0–8 min)</div>
+    <div class="theory-block">
+      <h4>List slicing — extracting parts</h4>
+      <p>list[start:end] extracts from start up to (not including) end. list[:3] = first 3 items. list[2:] = from index 2 to end. list[-2:] = last 2 items. list[::-1] = the entire list reversed! The same syntax works on strings.</p>
+      <div class="analogy">🧩 Analogy: Slicing a loaf of bread. "Give me slices 2 to 5." You don't take the whole loaf — just the portion you need. The original loaf is unchanged.</div>
+    </div>
+    <div class="theory-block">
+      <h4>Powerful built-in list functions</h4>
+      <p>min(list) → smallest · max(list) → largest · sum(list) → total · sorted(list) → new sorted copy · list.count(x) → how many times x appears · list.index(x) → position of first x</p>
+      <p>These work on any list of numbers. sorted() returns a NEW list — the original is untouched. list.sort() modifies the original in place.</p>
+    </div>
+    <div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+    <div class="code-wrap">
+      <div class="code-top"><span>day9_guided.py</span></div>
+      <div class="code-body"><span class="kw">scores</span> = [<span class="num">88</span>, <span class="num">45</span>, <span class="num">73</span>, <span class="num">91</span>, <span class="num">60</span>, <span class="num">55</span>, <span class="num">78</span>, <span class="num">95</span>, <span class="num">40</span>]
+
+<span class="cm"># Built-in functions</span>
+<span class="fn">print</span>(<span class="str">f"Highest: {max(scores)}"</span>)
+<span class="fn">print</span>(<span class="str">f"Lowest:  {min(scores)}"</span>)
+<span class="fn">print</span>(<span class="str">f"Total:   {sum(scores)}"</span>)
+<span class="fn">print</span>(<span class="str">f"Average: {sum(scores) / len(scores):.1f}"</span>)
+
+<span class="cm"># Sorting</span>
+<span class="kw">ranked</span> = <span class="fn">sorted</span>(scores, reverse=<span class="kw">True</span>)
+<span class="fn">print</span>(<span class="str">f"\nRanked: {ranked}"</span>)
+<span class="fn">print</span>(<span class="str">f"Top 3:    {ranked[:3]}"</span>)
+<span class="fn">print</span>(<span class="str">f"Bottom 3: {ranked[-3:]}"</span>)
+
+<span class="cm"># Slicing</span>
+<span class="fn">print</span>(<span class="str">f"\nFirst half: {scores[:len(scores)//2]}"</span>)
+<span class="fn">print</span>(<span class="str">f"Reversed:   {scores[::-1]}"</span>)
+
+<span class="cm"># String slicing — same syntax!</span>
+<span class="kw">word</span> = <span class="str">"Python"</span>
+<span class="fn">print</span>(<span class="str">f"\n'{word[:3]}' — first 3 letters"</span>)
+<span class="fn">print</span>(<span class="str">f"'{word[-2:]}' — last 2 letters"</span>)
+<span class="fn">print</span>(<span class="str">f"'{word[::-1]}' — reversed"</span>)
+
+<span class="cm"># List comprehension — one-line filter</span>
+<span class="kw">passing</span> = [s <span class="kw">for</span> s <span class="kw">in</span> scores <span class="kw">if</span> s >= <span class="num">70</span>]
+<span class="fn">print</span>(<span class="str">f"\nPassing (70+): {passing}"</span>)
+<span class="fn">print</span>(<span class="str">f"Count passing: {len(passing)}"</span>)
+<span class="fn">print</span>(<span class="str">f"Pass rate: {len(passing)/len(scores)*100:.0f}%"</span>)</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item"><div class="ex-num">1</div><div><strong>Slice experiments:</strong> On a list of 8 items, predict before running: what does list[2:5] give? list[::2]? list[1::2]? Build a mental model of start:end:step notation.</div></div>
+      <div class="ex-item"><div class="ex-num">2</div><div><strong>Comprehension read-aloud:</strong> [s for s in scores if s &gt;= 70] — read it: "give me s, for each s in scores, but only if s is at least 70." Ask the kid to write the failing scores version themselves.</div></div>
+      <div class="ex-item"><div class="ex-num">3</div><div><strong>sorted vs .sort():</strong> original = [3,1,4,1,5]. new = sorted(original). Print both — original unchanged! Now try original.sort() — original IS changed. The difference matters!</div></div>
+    </div>
+    <div class="slabel"><span></span> Solo Project (22–40 min)</div>
+    <div class="project-box">
+      <h4>🎯 Project: "10-Question Maths Quiz with Full Analysis"</h4>
+      <p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">A quiz engine that generates questions, tracks results in a list, and gives rich analysis. Uses loops, lists, slicing, and built-ins all together.</p>
+      <div class="project-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div>Generate 10 random multiplication questions: random.randint(1,12) × random.randint(1,12). Store correct answers.</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div>For each question: give 2 attempts. Correct on first try = 2 pts. Correct on second = 1 pt. Wrong both = 0 pt. Show correct answer after 2 failed attempts.</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div>Store each round's score in a list. After all 10 questions: print total score out of 20.</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div>Use max(), min(), sum(), sorted() to analyse: best round, worst round, average per round. Print top 3 rounds using slicing.</div></div>
+        <div class="pstep"><div class="pstep-num">5</div><div>Use a list comprehension to find all "perfect" rounds (2 points). Print count and percentage. Give overall grade using elif.</div></div>
+      </div>
+      <div class="stretch">⭐ Stretch: Use import time and time.time() to record how long each question takes. After the quiz, print the fastest and slowest question. avg_time = sum(times)/len(times)</div>
+    </div>
+    <div class="quiz-strip">
+      <strong>⚡ Verbal quiz</strong>
+      <ul class="quiz-qs">
+        <li>What does scores[:3] return?</li>
+        <li>How do you reverse a list using slicing (no .reverse() method)?</li>
+        <li>What is the difference between sorted(list) and list.sort()?</li>
+        <li>Read this aloud and explain it: [x for x in nums if x &gt; 0]</li>
+      </ul>
+    </div>
+    <div class="hw-box">
+      <div class="hw-title">📝 Week 3 Homework — due before Day 10</div>
+      <ul class="hw-list">
+        <li>Build a "Class Marksheet" — store 8 student names in one list and 8 marks in another (same order).</li>
+        <li>Print a formatted table: rank, name, marks, grade (use your elif), PASS or FAIL (pass = 40+).</li>
+        <li>Below the table: class average, name of top scorer and lowest scorer, number who passed.</li>
+      </ul>
+      <div class="hw-bonus">⭐ Bonus: Sort students by marks (highest first) and reprint the table in sorted order. Hint: use sorted() with zip() or just sort both lists manually by finding the max each time.</div>
+    </div>
+    <div class="oc-chips"><span class="oc-chip">Slices lists and strings</span><span class="oc-chip">Uses min/max/sum/sorted</span><span class="oc-chip">List comprehension basics</span><span class="oc-chip">Built a full quiz engine</span></div>
+  </div>
+</div>
+</div><!-- end week 3 -->
+<!-- WEEK 4 -->
+<div class="week-sec">
+<div class="week-hdr"><span class="wbadge w4">Week 4</span><span class="week-title">Functions & Final Project 🏆</span></div>
+<div class="week-goal">🎯 <strong>Goal:</strong> Kid writes reusable functions with parameters and return values, understands scope, and builds a complete Rock Paper Scissors game from scratch.</div>
+
+<!-- DAY 10 -->
+<div class="dcard" id="card-10">
+<div class="dhead" onclick="toggleDay(10)"><div class="dnum">10</div><div class="dinfo"><div class="dlabel">Week 4 · Day 10 · Monday</div><div class="dtitle">Functions — Parameters, Return Values & Scope</div></div><div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-10" onclick="event.stopPropagation();markDone(10)">✓ Mark done</button><button class="exp-btn">▼</button></div></div>
+<div class="dbody">
+<div class="timeline"><div class="tslot t-theory">0–8 min<br>Theory</div><div class="tslot t-guided">8–22 min<br>Guided Coding</div><div class="tslot t-project">22–40 min<br>Solo Project</div><div class="tslot t-hw">40–45 min<br>HW + Quiz</div></div>
+<div class="slabel"><span></span> Theory (0–8 min)</div>
+<div class="theory-block"><h4>Functions — reusable named blocks of code</h4><p>A function is code you write once and call many times by name. Parameters are inputs you pass in. The return value is what it gives back. Without return, the function gives back None.</p><div class="analogy">🧩 Analogy: A vending machine. You put in coins (parameters), press a button (call it), get a snack (return value). You don't care how it works inside — you just use it.</div><div class="error-spot"><strong>Scope:</strong> Variables created inside a function only exist while that function runs. They vanish after. This is called local scope. Demo: create x inside a function, try to print x outside → NameError.</div></div>
+<div class="slabel"><span></span> Guided Coding (8–22 min)</div>
+<div class="code-wrap"><div class="code-top"><span>day10_guided.py</span></div><div class="code-body"><span class="kw">def</span> <span class="fn">greet</span>(name, age):
+    <span class="fn">print</span>(<span class="str">f"Hello {name}, you are {age}!"</span>)
+
+<span class="fn">greet</span>(<span class="str">"Aryan"</span>, <span class="num">11</span>)
+<span class="fn">greet</span>(<span class="str">"Zara"</span>, <span class="num">12</span>)
+
+<span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+
+<span class="fn">print</span>(<span class="fn">add</span>(<span class="num">5</span>, <span class="num">7</span>))
+<span class="fn">print</span>(<span class="fn">add</span>(<span class="num">100</span>, <span class="num">200</span>))
+
+<span class="kw">def</span> <span class="fn">get_grade</span>(marks):
+    <span class="kw">if</span> marks >= <span class="num">90</span>: <span class="kw">return</span> <span class="str">"A+"</span>
+    <span class="kw">elif</span> marks >= <span class="num">75</span>: <span class="kw">return</span> <span class="str">"A"</span>
+    <span class="kw">elif</span> marks >= <span class="num">60</span>: <span class="kw">return</span> <span class="str">"B"</span>
+    <span class="kw">elif</span> marks >= <span class="num">40</span>: <span class="kw">return</span> <span class="str">"C"</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="str">"F"</span>
+
+<span class="kw">for</span> m <span class="kw">in</span> [<span class="num">95</span>, <span class="num">80</span>, <span class="num">65</span>, <span class="num">45</span>, <span class="num">20</span>]:
+    <span class="fn">print</span>(<span class="str">f"{m} → {get_grade(m)}"</span>)
+
+<span class="kw">def</span> <span class="fn">power</span>(base, exp=<span class="num">2</span>):   <span class="cm"># default parameter</span>
+    <span class="kw">return</span> base ** exp
+
+<span class="fn">print</span>(<span class="fn">power</span>(<span class="num">3</span>))       <span class="cm"># uses default exp=2</span>
+<span class="fn">print</span>(<span class="fn">power</span>(<span class="num">2</span>, <span class="num">10</span>))  <span class="cm"># 1024</span></div></div>
+<div class="ex-list">
+<div class="ex-item"><div class="ex-num">1</div><div>Show no-return result: result = greet("X", 10) then print(result) → None. Functions without return give back None.</div></div>
+<div class="ex-item"><div class="ex-num">2</div><div>Scope live experiment: define x = 999 inside a function. Run the function. Now print(x) outside → NameError. x only lived inside.</div></div>
+<div class="ex-item"><div class="ex-num">3</div><div>Rewrite the Day 2 calculator as 4 functions: add(), subtract(), multiply(), divide(). Compare readability with the old flat version.</div></div>
+</div>
+<div class="slabel"><span></span> Solo Project (22–40 min)</div>
+<div class="project-box"><h4>🧪 Project: "Function Toolbox — 6 Utility Functions"</h4><p style="font-size:.82rem;color:#166534;margin-bottom:.6rem">Build 6 reusable functions. Each must take parameters and return a value. Demonstrate each with test calls.</p>
+<div class="project-steps">
+<div class="pstep"><div class="pstep-num">1</div><div>is_even(n) → return True/False. Test with 5 numbers.</div></div>
+<div class="pstep"><div class="pstep-num">2</div><div>celsius_to_f(c) → return (c × 9/5) + 32. Test: 0°C=32°F, 100°C=212°F.</div></div>
+<div class="pstep"><div class="pstep-num">3</div><div>count_vowels(word) → loop through, count letters in "aeiou", return count.</div></div>
+<div class="pstep"><div class="pstep-num">4</div><div>get_grade(marks) → return grade string using elif chain.</div></div>
+<div class="pstep"><div class="pstep-num">5</div><div>is_palindrome(word) → return word.lower() == word.lower()[::-1]. Test: "racecar","python","madam".</div></div>
+<div class="pstep"><div class="pstep-num">6</div><div>print_box(text) → prints text surrounded by a neat border of = signs.</div></div>
+</div>
+<div class="stretch">⭐ Stretch: Write full_report(name, marks, temp_c) that calls get_grade(), celsius_to_f(), and print_box() internally to produce a formatted report — functions calling functions!</div>
+</div>
+<div class="quiz-strip"><strong>⚡ Verbal quiz</strong><ul class="quiz-qs"><li>What is the difference between a parameter and an argument?</li><li>A function has no return statement — what does it return?</li><li>What is scope? Why can't I use a variable from inside a function outside it?</li><li>What is a default parameter? Write an example.</li></ul></div>
+<div class="hw-box"><div class="hw-title">📝 Homework — due before Day 11</div><ul class="hw-list"><li>Write is_prime(n) — returns True if prime, False if not. Use it to print all primes from 1 to 100 and count them.</li><li>Write fibonacci(n) — returns the nth Fibonacci number. Print first 15 Fibonacci numbers using a loop.</li></ul><div class="hw-bonus">⭐ Bonus: Write is_perfect(n) — a number where the sum of its divisors (excluding itself) equals itself. 6 is perfect (1+2+3=6). Find all perfect numbers under 1000.</div></div>
+<div class="oc-chips"><span class="oc-chip">Writes functions with parameters</span><span class="oc-chip">Uses return values</span><span class="oc-chip">Understands scope</span><span class="oc-chip">Default parameters</span></div>
+</div>
+</div>
+
+<!-- DAY 11 -->
+<div class="dcard" id="card-11">
+<div class="dhead" onclick="toggleDay(11)"><div class="dnum">11</div><div class="dinfo"><div class="dlabel">Week 4 · Day 11 · Wednesday</div><div class="dtitle">Project Plan + Build Rock Paper Scissors v1</div></div><div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-11" onclick="event.stopPropagation();markDone(11)">✓ Mark done</button><button class="exp-btn">▼</button></div></div>
+<div class="dbody">
+<div class="timeline"><div class="tslot t-theory">0–10 min<br>Plan on Paper</div><div class="tslot t-guided">10–28 min<br>Build Together</div><div class="tslot t-project">28–43 min<br>Add Features</div><div class="tslot t-hw">43–45 min<br>HW Brief</div></div>
+<div class="slabel"><span></span> Plan Before Coding (0–10 min)</div>
+<div class="theory-block"><h4>How real programmers plan</h4><p>On paper: what inputs does the program need? What decisions must it make? What repeats? What should be a function? For Rock Paper Scissors: inputs = player choice. Decisions = who wins? Repeats = play again loop. Functions = get_computer_choice(), get_player_choice(), decide_winner(), display_result(). Draw this plan. Only then open IDLE.</p></div>
+<div class="slabel"><span></span> Build Core Game Together (10–28 min)</div>
+<div class="code-wrap"><div class="code-top"><span>rps_v1.py — build step by step</span></div><div class="code-body"><span class="kw">import</span> random
+
+<span class="kw">def</span> <span class="fn">get_computer_choice</span>():
+    <span class="cm">"""Returns random: rock, paper, or scissors"""</span>
+    <span class="kw">return</span> <span class="fn">random.choice</span>([<span class="str">"rock"</span>, <span class="str">"paper"</span>, <span class="str">"scissors"</span>])
+
+<span class="kw">def</span> <span class="fn">get_player_choice</span>():
+    <span class="cm">"""Asks player and validates input"""</span>
+    <span class="kw">valid</span> = [<span class="str">"rock"</span>, <span class="str">"paper"</span>, <span class="str">"scissors"</span>]
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">c</span> = <span class="fn">input</span>(<span class="str">"Your choice (rock/paper/scissors): "</span>).<span class="fn">lower</span>().<span class="fn">strip</span>()
+        <span class="kw">if</span> c <span class="kw">in</span> valid: <span class="kw">return</span> c
+        <span class="fn">print</span>(<span class="str">"Invalid! Try again."</span>)
+
+<span class="kw">def</span> <span class="fn">decide_winner</span>(player, computer):
+    <span class="cm">"""Returns 'player', 'computer', or 'tie'"""</span>
+    <span class="kw">if</span> player == computer: <span class="kw">return</span> <span class="str">"tie"</span>
+    <span class="kw">wins</span> = {(<span class="str">"rock"</span>,<span class="str">"scissors"</span>),(<span class="str">"paper"</span>,<span class="str">"rock"</span>),(<span class="str">"scissors"</span>,<span class="str">"paper"</span>)}
+    <span class="kw">return</span> <span class="str">"player"</span> <span class="kw">if</span> (player, computer) <span class="kw">in</span> wins <span class="kw">else</span> <span class="str">"computer"</span>
+
+<span class="kw">p</span>, <span class="kw">c</span>, <span class="kw">t</span> = <span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>
+<span class="fn">print</span>(<span class="str">"🎮 ROCK PAPER SCISSORS"</span>)
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="kw">player</span> = <span class="fn">get_player_choice</span>()
+    <span class="kw">computer</span> = <span class="fn">get_computer_choice</span>()
+    <span class="kw">winner</span> = <span class="fn">decide_winner</span>(player, computer)
+    <span class="fn">print</span>(<span class="str">f"You: {player}  CPU: {computer}"</span>)
+    <span class="kw">if</span> winner == <span class="str">"player"</span>: p += <span class="num">1</span>; <span class="fn">print</span>(<span class="str">"🎉 You win!"</span>)
+    <span class="kw">elif</span> winner == <span class="str">"computer"</span>: c += <span class="num">1</span>; <span class="fn">print</span>(<span class="str">"💻 CPU wins!"</span>)
+    <span class="kw">else</span>: t += <span class="num">1</span>; <span class="fn">print</span>(<span class="str">"🤝 Tie!"</span>)
+    <span class="fn">print</span>(<span class="str">f"Score — You:{p} CPU:{c} Ties:{t}"</span>)
+    <span class="kw">if</span> <span class="fn">input</span>(<span class="str">"Again? (yes/no): "</span>).<span class="fn">lower</span>() != <span class="str">"yes"</span>: <span class="kw">break</span>
+<span class="fn">print</span>(<span class="str">f"Final: You {p} — CPU {c} — Ties {t}"</span>)</div></div>
+<div class="slabel"><span></span> Add Features Independently (28–43 min)</div>
+<div class="project-box"><h4>⚙️ Features to add</h4>
+<div class="project-steps">
+<div class="pstep"><div class="pstep-num">1</div><div>Ask player name at the start. Use it throughout instead of "You".</div></div>
+<div class="pstep"><div class="pstep-num">2</div><div>Add emojis dict: symbols = {"rock":"🪨","paper":"📄","scissors":"✂️"}. Use symbols[player] in output.</div></div>
+<div class="pstep"><div class="pstep-num">3</div><div>Track win streak — how many rounds in a row player has won. Print "🔥 X win streak!" when streak ≥ 2.</div></div>
+<div class="pstep"><div class="pstep-num">4</div><div>Store all rounds in a history list. Print full history at the end.</div></div>
+</div></div>
+<div class="hw-box"><div class="hw-title">📝 Homework — due before Day 12</div><ul class="hw-list"><li>Add "Best of N" mode — ask how many rounds (3, 5, or 7). Stop once one player reaches (N//2)+1 wins.</li><li>After game ends, print win rate as a percentage: player_wins/total_rounds × 100.</li></ul><div class="hw-bonus">⭐ Bonus: Try Rock Paper Scissors Lizard Spock — 5 choices, 10 winning combos!</div></div>
+<div class="oc-chips"><span class="oc-chip">Plans before coding</span><span class="oc-chip">Writes docstrings</span><span class="oc-chip">Functions calling functions</span><span class="oc-chip">Built a complete game</span></div>
+</div>
+</div>
+
+<!-- DAY 12 -->
+<div class="dcard" id="card-12">
+<div class="dhead" onclick="toggleDay(12)"><div class="dnum">12</div><div class="dinfo"><div class="dlabel">Week 4 · Day 12 · Friday — FINAL DAY 🏆</div><div class="dtitle">Polish + Code Review + Family Showcase</div></div><div class="dmeta"><span class="tpill">⏱ 45 min</span><button class="done-btn" id="btn-12" onclick="event.stopPropagation();markDone(12)">✓ Mark done</button><button class="exp-btn">▼</button></div></div>
+<div class="dbody">
+<div class="timeline"><div class="tslot t-theory">0–5 min<br>Review HW</div><div class="tslot t-guided">5–25 min<br>Final Polish</div><div class="tslot t-project">25–40 min<br>Code Review</div><div class="tslot t-hw">40–45 min<br>Showcase!</div></div>
+<div class="slabel"><span></span> Final Polish (5–25 min)</div>
+<div class="code-wrap"><div class="code-top"><span>rps_final.py — complete polished version</span></div><div class="code-body"><span class="kw">import</span> random
+
+<span class="kw">def</span> <span class="fn">get_computer_choice</span>():
+    <span class="kw">return</span> <span class="fn">random.choice</span>([<span class="str">"rock"</span>,<span class="str">"paper"</span>,<span class="str">"scissors"</span>])
+
+<span class="kw">def</span> <span class="fn">get_player_choice</span>():
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">c</span> = <span class="fn">input</span>(<span class="str">"  Move (rock/paper/scissors/quit): "</span>).<span class="fn">lower</span>().<span class="fn">strip</span>()
+        <span class="kw">if</span> c <span class="kw">in</span> [<span class="str">"rock"</span>,<span class="str">"paper"</span>,<span class="str">"scissors"</span>,<span class="str">"quit"</span>]: <span class="kw">return</span> c
+        <span class="fn">print</span>(<span class="str">"  ⚠ Invalid!"</span>)
+
+<span class="kw">def</span> <span class="fn">decide_winner</span>(p, c):
+    <span class="kw">if</span> p == c: <span class="kw">return</span> <span class="str">"tie"</span>
+    <span class="kw">return</span> <span class="str">"player"</span> <span class="kw">if</span> (p,c) <span class="kw">in</span> {(<span class="str">"rock"</span>,<span class="str">"scissors"</span>),(<span class="str">"paper"</span>,<span class="str">"rock"</span>),(<span class="str">"scissors"</span>,<span class="str">"paper"</span>)} <span class="kw">else</span> <span class="str">"computer"</span>
+
+<span class="kw">def</span> <span class="fn">get_verdict</span>(ps, cs):
+    <span class="kw">if</span> ps > cs: <span class="kw">return</span> <span class="str">"🏆 You dominated!"</span>
+    <span class="kw">elif</span> cs > ps: <span class="kw">return</span> <span class="str">"🤖 Computer wins overall!"</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="str">"🤝 Perfect tie!"</span>
+
+<span class="kw">def</span> <span class="fn">play</span>():
+    <span class="kw">sym</span> = {<span class="str">"rock"</span>:<span class="str">"🪨"</span>,<span class="str">"paper"</span>:<span class="str">"📄"</span>,<span class="str">"scissors"</span>:<span class="str">"✂️"</span>}
+    <span class="kw">name</span> = <span class="fn">input</span>(<span class="str">"Your name: "</span>)
+    <span class="fn">print</span>(<span class="str">f"\n🎮 Welcome {name}! Type 'quit' to stop.\n"</span>)
+    <span class="kw">ps</span>, <span class="kw">cs</span>, <span class="kw">ts</span>, <span class="kw">streak</span>, <span class="kw">history</span> = <span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>, []
+    <span class="kw">rnd</span> = <span class="num">0</span>
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">rnd</span> += <span class="num">1</span>
+        <span class="fn">print</span>(<span class="str">f"--- Round {rnd} ---"</span>)
+        <span class="kw">player</span> = <span class="fn">get_player_choice</span>()
+        <span class="kw">if</span> player == <span class="str">"quit"</span>: <span class="kw">break</span>
+        <span class="kw">comp</span> = <span class="fn">get_computer_choice</span>()
+        <span class="kw">w</span> = <span class="fn">decide_winner</span>(player, comp)
+        <span class="fn">print</span>(<span class="str">f"  {sym[player]} vs {sym[comp]}"</span>)
+        <span class="kw">if</span> w == <span class="str">"player"</span>:
+            ps += <span class="num">1</span>; streak += <span class="num">1</span>
+            <span class="fn">print</span>(<span class="str">f"  🎉 {name} wins!"</span> + (<span class="str">f" 🔥{streak} streak!"</span> <span class="kw">if</span> streak>=<span class="num">2</span> <span class="kw">else</span> <span class="str">""</span>))
+        <span class="kw">elif</span> w == <span class="str">"computer"</span>:
+            cs += <span class="num">1</span>; streak = <span class="num">0</span>; <span class="fn">print</span>(<span class="str">"  💻 Computer wins!"</span>)
+        <span class="kw">else</span>:
+            ts += <span class="num">1</span>; streak = <span class="num">0</span>; <span class="fn">print</span>(<span class="str">"  🤝 Tie!"</span>)
+        history.<span class="fn">append</span>(<span class="str">f"R{rnd}: {player} vs {comp} → {w}"</span>)
+        <span class="fn">print</span>(<span class="str">f"  Score: {name} {ps} | CPU {cs} | Ties {ts}\n"</span>)
+    <span class="kw">total</span> = ps + cs + ts
+    <span class="fn">print</span>(<span class="str">"="*35</span>)
+    <span class="fn">print</span>(<span class="str">f"  FINAL — {total} rounds"</span>)
+    <span class="fn">print</span>(<span class="str">f"  {name}: {ps}  CPU: {cs}  Ties: {ts}"</span>)
+    <span class="kw">if</span> total: <span class="fn">print</span>(<span class="str">f"  Win rate: {round(ps/total*100)}%"</span>)
+    <span class="fn">print</span>(<span class="str">f"  {get_verdict(ps,cs)}"</span>)
+    <span class="fn">print</span>(<span class="str">"\n  History:"</span>)
+    <span class="kw">for</span> h <span class="kw">in</span> history: <span class="fn">print</span>(<span class="str">f"    {h}"</span>)
+    <span class="fn">print</span>(<span class="str">"="*35</span>)
+
+<span class="fn">play</span>()</div></div>
+<div class="slabel"><span></span> Code Review Checklist (25–40 min)</div>
+<div class="project-box"><h4>🔍 Review like a professional</h4>
+<div class="project-steps">
+<div class="pstep"><div class="pstep-num">1</div><div><strong>Readability:</strong> Can a stranger read every variable name and understand it instantly? Rename anything vague.</div></div>
+<div class="pstep"><div class="pstep-num">2</div><div><strong>Docstrings:</strong> Every function should have a triple-quoted docstring explaining what it does.</div></div>
+<div class="pstep"><div class="pstep-num">3</div><div><strong>Edge cases:</strong> What if player quits immediately (0 rounds)? Does win rate crash on division by zero? Test every weird input.</div></div>
+<div class="pstep"><div class="pstep-num">4</div><div><strong>DRY (Don't Repeat Yourself):</strong> Is any code written twice? Could it be a function? Find at least one improvement.</div></div>
+<div class="pstep"><div class="pstep-num">5</div><div><strong>Showcase:</strong> Kid runs the game for a family member, explains what each function does, points to a loop, an if, a variable — in their own words.</div></div>
+</div></div>
+<div class="hw-box"><div class="hw-title">📝 Final Month Challenge</div><ul class="hw-list"><li>Add "2 Player Mode" — player 1 vs player 2 on the same computer. Best of 7.</li><li>Write a how_to_play() function that prints the rules. Show it at the start — user can skip it.</li><li>Write 5 sentences: what you learned this month, what was hardest, and what you want to build next.</li></ul><div class="hw-bonus">🚀 Dream project: Write a paragraph describing your dream app or game. We might actually build it in Month 2!</div></div>
+<div class="oc-chips"><span class="oc-chip">✅ print() & math</span><span class="oc-chip">✅ Variables & types</span><span class="oc-chip">✅ input() & conversion</span><span class="oc-chip">✅ if/elif/else</span><span class="oc-chip">✅ and/or/not</span><span class="oc-chip">✅ Nested conditions</span><span class="oc-chip">✅ for loops</span><span class="oc-chip">✅ while loops</span><span class="oc-chip">✅ Lists & slicing</span><span class="oc-chip">✅ Functions & scope</span><span class="oc-chip">✅ Full project built</span></div>
+</div>
+</div>
+</div><!-- end week 4 -->
+
+<div class="final">
+  <h2>🎓 Month 1 Complete!</h2>
+  <p>From "Hello World" to a full Rock Paper Scissors game with functions, loops, score tracking, and win streaks. That's real programming.</p>
+  <div class="nxt-grid">
+    <div class="nxt"><strong>Month 2</strong>Dictionaries, file I/O, error handling — build a contact book</div>
+    <div class="nxt"><strong>Month 3</strong>Pygame — draw, animate, build Pong or Snake</div>
+    <div class="nxt"><strong>Month 4</strong>Classes & objects — build a card game with OOP</div>
+    <div class="nxt"><strong>Free resource</strong>CS50P (Harvard) on edX — perfect next step, free!</div>
+  </div>
+</div>
+</div>
+
+<script>
+const total=12,done=new Set(JSON.parse(localStorage.getItem('py12done')||'[]'));
+function save(){localStorage.setItem('py12done',JSON.stringify([...done]))}
+function updateProgress(){
+  const pct=Math.round(done.size/total*100);
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progTxt').textContent=done.size+' of '+total+' done — '+pct+'%';
+  for(let i=1;i<=total;i++){
+    const dot=document.getElementById('dot-'+i),card=document.getElementById('card-'+i),btn=document.getElementById('btn-'+i);
+    if(dot)dot.classList.toggle('done',done.has(i));
+    if(card)card.classList.toggle('done-card',done.has(i));
+    if(btn)btn.textContent=done.has(i)?'✓ Done!':'✓ Mark done';
+  }
+}
+function markDone(d){done.has(d)?done.delete(d):done.add(d);save();updateProgress()}
+function toggleDay(d){const card=document.getElementById('card-'+d),open=card.classList.contains('open');document.querySelectorAll('.dcard.open').forEach(c=>c.classList.remove('open'));if(!open)card.classList.add('open')}
+const dots=document.getElementById('dayDots');
+for(let i=1;i<=total;i++){const b=document.createElement('button');b.className='ddot';b.id='dot-'+i;b.textContent=i;b.onclick=()=>{document.getElementById('card-'+i).scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>toggleDay(i),350)};dots.appendChild(b)}
+updateProgress();toggleDay(1);
+</script>
+</body>
+</html>
