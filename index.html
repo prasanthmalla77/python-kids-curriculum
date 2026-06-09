@@ -92,6 +92,147 @@ body{font-family:'Nunito',sans-serif;background:#F5F4FF;color:#1a1a2e;font-size:
 .nxt strong{display:block;color:#A78BFA;margin-bottom:3px;font-size:.88rem}
 @media(max-width:600px){.dhead{flex-wrap:wrap}.dmeta{flex-wrap:wrap}.tslot{font-size:.6rem}}
 @media print{.sticky{display:none}.dcard.open .dbody,.dbody{display:block!important}.exp-btn,.done-btn{display:none}}
+
+/* ===== CLEAN WHITE THEME OVERRIDES ===== */
+body{background:#F8F9FC!important;color:#1E293B!important}
+.hero{background:linear-gradient(135deg,#1E293B 0%,#334155 100%)!important;padding:3rem 2rem 3.5rem}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem)}
+.sticky{background:#fff!important;border-bottom:2px solid #E2E8F0!important;box-shadow:0 2px 12px rgba(0,0,0,.06)!important}
+.main{background:transparent}
+.week-sec{margin-bottom:3rem}
+
+/* Week headers — clean */
+.week-hdr{background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1rem}
+.week-goal{background:#F0FDF4;border-left:4px solid #16A34A;color:#14532D!important}
+
+/* ===== 3D CARD WRAPPER ===== */
+.card-scene{perspective:1200px;margin-bottom:.75rem}
+.card-inner{position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.23,1,.32,1);will-change:transform}
+.card-scene.flipped .card-inner{transform:rotateY(180deg)}
+
+/* Card faces */
+.card-front,.card-back{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;overflow:hidden;background:#fff;border:1.5px solid #E2E8F0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card-back{position:absolute;inset:0;transform:rotateY(180deg);overflow-y:auto;padding:1rem 1.25rem}
+
+/* Tilt shadow effect */
+.card-scene:hover .card-front{box-shadow:0 20px 60px rgba(99,102,241,.15),0 4px 12px rgba(0,0,0,.08)}
+
+/* Front face = dhead */
+.card-front .dhead{display:flex;align-items:center;gap:.9rem;padding:1rem 1.25rem;cursor:pointer;user-select:none}
+
+/* Back face styling */
+.card-back{background:#fff}
+
+/* Day number badges — clean colours */
+.dnum{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.88rem;font-weight:800;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.w1 .dnum{background:#EEF2FF;color:#4F46E5}
+.w2 .dnum{background:#F0FDFA;color:#0F766E}
+.w3 .dnum{background:#FFFBEB;color:#B45309}
+.w4 .dnum{background:#FFF1F2;color:#BE123C}
+.done-card .dnum{background:#F0FDF4;color:#15803D}
+
+/* Text colours — dark on white, easy to read */
+.dlabel{font-size:.65rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.1em}
+.dtitle{font-size:.95rem;font-weight:700;color:#1E293B}
+.dinfo{flex:1;min-width:0}
+.dtitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Meta */
+.tpill{background:#F1F5F9;color:#64748B;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:100px;border:1px solid #E2E8F0}
+.done-btn{background:#fff;border:1.5px solid #E2E8F0;border-radius:8px;padding:4px 10px;font-size:.7rem;font-weight:700;cursor:pointer;color:#94A3B8;font-family:'Nunito',sans-serif;transition:all .2s}
+.done-btn:hover{border-color:#16A34A;color:#16A34A}
+.done-card .done-btn{background:#F0FDF4;border-color:#16A34A;color:#16A34A}
+.chevron{color:#CBD5E1;font-size:.8rem;flex-shrink:0;transition:transform .3s}
+
+/* Back face content */
+.card-back .timeline{display:flex;gap:2px;margin-bottom:1rem;border-radius:8px;overflow:hidden;border:1px solid #E2E8F0}
+.card-back .tslot{flex:1;padding:6px 4px;text-align:center;font-size:.62rem;font-weight:700;line-height:1.4;text-transform:uppercase}
+.card-back .t-theory{background:#EEF2FF;color:#4F46E5}
+.card-back .t-guided{background:#EFF6FF;color:#1D4ED8}
+.card-back .t-project{background:#F0FDF4;color:#15803D}
+.card-back .t-hw{background:#FFFBEB;color:#B45309}
+
+.card-back .theory-block{background:#F8FAFC;border:1px solid #E2E8F0;border-left:3px solid #6366F1;border-radius:0 10px 10px 0;padding:.85rem 1rem;margin-bottom:.65rem}
+.w2 .card-back .theory-block{border-left-color:#0D9488}
+.w3 .card-back .theory-block{border-left-color:#D97706}
+.w4 .card-back .theory-block{border-left-color:#E11D48}
+.card-back .theory-block h4{font-size:.85rem;font-weight:800;color:#1E293B;margin-bottom:.35rem}
+.card-back .theory-block p{font-size:.82rem;color:#475569;margin-bottom:.3rem;line-height:1.65}
+.card-back .analogy{background:#FFFBEB;border-left:3px solid #F59E0B;border-radius:0 8px 8px 0;padding:.5rem .75rem;font-size:.8rem;color:#92400E;font-style:italic;margin-top:.4rem}
+.card-back .error-spot{background:#FFF1F2;border:1px solid #FECDD3;border-radius:8px;padding:.6rem .85rem;font-size:.8rem;color:#BE123C;margin:.4rem 0}
+.card-back .error-spot strong{display:block;font-size:.68rem;text-transform:uppercase;margin-bottom:2px;opacity:.7}
+.card-back .concept-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:.5rem}
+.card-back .ccchip{font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:100px;background:#EEF2FF;color:#4F46E5;border:1px solid #C7D2FE}
+.w2 .card-back .ccchip{background:#F0FDFA;color:#0F766E;border-color:#99F6E4}
+.w3 .card-back .ccchip{background:#FFFBEB;color:#B45309;border-color:#FDE68A}
+.w4 .card-back .ccchip{background:#FFF1F2;color:#BE123C;border-color:#FECDD3}
+
+.card-back .code-wrap{background:#1E293B;border-radius:10px;overflow:hidden;margin:.5rem 0;border:none}
+.card-back .code-top{background:#273449;padding:5px 12px;font-size:.68rem;color:#A5B4FC;font-weight:700;border-bottom:1px solid #334155}
+.card-back .code-body{padding:.85rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.8;color:#CBD5E1;overflow-x:auto;white-space:pre}
+
+.card-back .ex-list{display:flex;flex-direction:column;gap:5px;margin-bottom:.65rem}
+.card-back .ex-item{display:flex;gap:.65rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:9px;padding:.6rem .85rem;font-size:.81rem;color:#475569}
+.card-back .ex-num{width:20px;height:20px;border-radius:5px;background:#EEF2FF;color:#4F46E5;font-size:.65rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.w2 .card-back .ex-num{background:#F0FDFA;color:#0F766E}
+.w3 .card-back .ex-num{background:#FFFBEB;color:#B45309}
+.w4 .card-back .ex-num{background:#FFF1F2;color:#BE123C}
+
+.card-back .project-box{background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:12px;padding:.9rem 1rem;margin:.65rem 0}
+.card-back .project-box h4{font-size:.85rem;font-weight:800;color:#15803D;margin-bottom:.45rem}
+.card-back .project-steps{display:flex;flex-direction:column;gap:4px}
+.card-back .pstep{display:flex;gap:.6rem;font-size:.81rem;color:#166534;line-height:1.5}
+.card-back .pstep-num{width:18px;height:18px;border-radius:5px;background:#BBF7D0;color:#15803D;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.card-back .stretch{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:7px;padding:.45rem .75rem;font-size:.78rem;color:#1D4ED8;margin-top:.4rem;font-weight:600}
+
+.card-back .hw-box{background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:.9rem 1rem;margin-top:.85rem}
+.card-back .hw-title{font-size:.68rem;font-weight:800;color:#B45309;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.45rem}
+.card-back .hw-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.card-back .hw-list li{font-size:.81rem;color:#78350F;display:flex;gap:.5rem;line-height:1.5}
+.card-back .hw-list li::before{content:"→";flex-shrink:0;color:#D97706;font-weight:800}
+.card-back .hw-bonus{background:#EEF2FF;border-radius:7px;padding:.4rem .75rem;font-size:.78rem;color:#4F46E5;margin-top:.4rem;font-weight:600}
+
+.card-back .quiz-strip{background:#F0FDFA;border:1px solid #99F6E4;border-radius:10px;padding:.7rem 1rem;margin-top:.65rem}
+.card-back .quiz-strip strong{font-size:.68rem;color:#0F766E;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.35rem}
+.card-back .quiz-qs{list-style:none;display:flex;flex-direction:column;gap:3px}
+.card-back .quiz-qs li{font-size:.8rem;color:#134E4A;padding-left:16px;position:relative;line-height:1.5}
+.card-back .quiz-qs li::before{content:"Q";position:absolute;left:0;font-weight:800;color:#0D9488;font-size:.68rem}
+
+.card-back .oc-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:.65rem}
+.card-back .oc-chip{font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:100px;background:#F0FDFA;color:#0F766E;border:1px solid #99F6E4}
+
+.card-back .slabel{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#94A3B8;margin:1rem 0 .45rem;display:flex;align-items:center;gap:.5rem}
+.card-back .slabel::after{content:'';flex:1;height:1px;background:#E2E8F0}
+
+.close-btn{display:block;width:100%;padding:.5rem;background:#F1F5F9;border:none;border-radius:8px;font-size:.75rem;font-weight:700;color:#64748B;cursor:pointer;margin-top:1rem;font-family:'Nunito',sans-serif;transition:all .2s}
+.close-btn:hover{background:#E2E8F0;color:#1E293B}
+
+/* Weekly project */
+.weekly-project{background:#fff;border:1.5px solid #E2E8F0;border-radius:18px;padding:1.5rem 2rem;margin:1.5rem 0;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.weekly-project::after{content:'WEEKLY PROJECT';position:absolute;top:1rem;right:1.5rem;font-size:.6rem;font-weight:800;letter-spacing:.15em;color:#CBD5E1}
+.wp-title{font-size:1rem;font-weight:800;color:#1E293B;margin-bottom:.5rem}
+.wp-desc{font-size:.83rem;color:#64748B;margin-bottom:.75rem;line-height:1.65}
+.wp-features{display:flex;flex-wrap:wrap;gap:5px}
+.wpf{font-size:.7rem;font-weight:600;padding:2px 9px;border-radius:100px;background:#F1F5F9;border:1px solid #E2E8F0;color:#475569}
+
+/* Final */
+.final{background:linear-gradient(135deg,#1E293B,#334155);color:#fff;border-radius:20px;padding:2.5rem 2rem;text-align:center;margin-top:2rem}
+.final h2{font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:.4rem}
+.final p{color:#94A3B8;margin-bottom:1.5rem}
+.nxt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.nxt{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:1rem;font-size:.82rem;color:#CBD5E1;text-align:left}
+.nxt strong{display:block;color:#A5B4FC;margin-bottom:3px}
+
+/* Dots */
+.ddot.done{background:#16A34A!important;border-color:#16A34A!important;color:#fff!important}
+.ddot{background:#F1F5F9!important;border:1px solid #E2E8F0!important;color:#94A3B8!important}
+.ddot:hover{border-color:#6366F1!important;color:#6366F1!important}
+.prog-fill{background:linear-gradient(90deg,#6366F1,#0D9488)!important}
+
+/* Confetti */
+.confetti-p{position:fixed;width:8px;height:8px;border-radius:2px;pointer-events:none;z-index:9999;animation:cfall 2s ease-in forwards}
+@keyframes cfall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(80vh) rotate(720deg)}}
+
 </style>
 </head>
 <body>
@@ -394,7 +535,11 @@ Today I write my first program!
     <div class="oc-chips"><span class="oc-chip">Uses input() correctly</span><span class="oc-chip">Converts with int() float()</span><span class="oc-chip">Uses string methods</span><span class="oc-chip">Built a full interactive program</span></div>
   </div>
 </div>
-</div><!-- end week 1 -->
+<div class="weekly-project">
+  <div class="wp-title">🏆 Week 1 Weekend Project: "Smart Calculator App"</div>
+  <div class="wp-desc">Ask for two numbers and an operation (+, -, *, /). Show result in a formatted box. Tell the user if the result is positive/negative and even/odd. Handle division by zero gracefully.</div>
+  <div class="wp-features"><span class="wpf">input() for all values</span><span class="wpf">f-strings</span><span class="wpf">math operators</span><span class="wpf">division by zero check</span><span class="wpf">formatted result box</span></div>
+</div></div><!-- end week 1 -->
 <!-- WEEK 2 -->
 <div class="week-sec">
   <div class="week-hdr"><span class="wbadge w2">Week 2</span><span class="week-title">Making Decisions — Conditionals & Logic 🧠</span></div>
@@ -675,7 +820,11 @@ Today I write my first program!
     <div class="oc-chips"><span class="oc-chip">Writes nested if/else</span><span class="oc-chip">Uses .lower() .strip()</span><span class="oc-chip">Uses "in" keyword</span><span class="oc-chip">Built a text adventure</span></div>
   </div>
 </div>
-</div><!-- end week 2 -->
+<div class="weekly-project">
+  <div class="wp-title">🏆 Week 2 Weekend Project: "Grade Report Card Generator"</div>
+  <div class="wp-desc">Ask for 5 subject names and 5 marks. Print each with grade and message. Show overall average, highest and lowest subject, and an overall grade. Uses all Week 1 and Week 2 concepts.</div>
+  <div class="wp-features"><span class="wpf">input() × 10</span><span class="wpf">elif grade chain</span><span class="wpf">and/or conditions</span><span class="wpf">average math</span><span class="wpf">formatted report</span></div>
+</div></div><!-- end week 2 -->
 <!-- WEEK 3 -->
 <div class="week-sec">
   <div class="week-hdr"><span class="wbadge w3">Week 3</span><span class="week-title">Loops & Lists — Automation & Collections 🔄</span></div>
@@ -976,7 +1125,11 @@ fruits.<span class="fn">remove</span>(<span class="str">"banana"</span>)
     <div class="oc-chips"><span class="oc-chip">Slices lists and strings</span><span class="oc-chip">Uses min/max/sum/sorted</span><span class="oc-chip">List comprehension basics</span><span class="oc-chip">Built a full quiz engine</span></div>
   </div>
 </div>
-</div><!-- end week 3 -->
+<div class="weekly-project">
+  <div class="wp-title">🏆 Week 3 Weekend Project: "Student Analytics Dashboard"</div>
+  <div class="wp-desc">Collect names and marks for up to 10 students using a while loop. Print a sorted rank table with grade and pass/fail. Class stats: average, top scorer, above/below average, pass rate, and an ASCII bar chart using print() with * characters.</div>
+  <div class="wp-features"><span class="wpf">while loop collection</span><span class="wpf">two parallel lists</span><span class="wpf">sorted() analysis</span><span class="wpf">list comprehension</span><span class="wpf">ASCII bar chart</span></div>
+</div></div><!-- end week 3 -->
 <!-- WEEK 4 -->
 <div class="week-sec">
 <div class="week-hdr"><span class="wbadge w4">Week 4</span><span class="week-title">Functions & Final Project 🏆</span></div>
@@ -1198,8 +1351,62 @@ function updateProgress(){
 function markDone(d){done.has(d)?done.delete(d):done.add(d);save();updateProgress()}
 function toggleDay(d){const card=document.getElementById('card-'+d),open=card.classList.contains('open');document.querySelectorAll('.dcard.open').forEach(c=>c.classList.remove('open'));if(!open)card.classList.add('open')}
 const dots=document.getElementById('dayDots');
-for(let i=1;i<=total;i++){const b=document.createElement('button');b.className='ddot';b.id='dot-'+i;b.textContent=i;b.onclick=()=>{document.getElementById('card-'+i).scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>toggleDay(i),350)};dots.appendChild(b)}
+for(let i=1;i<=total;i++){const b=document.createElement('button');b.className='ddot';b.id='dot-'+i;b.textContent=i;b.onclick=()=>{document.getElementById('card-'+i).scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>flip(i),400)};dots.appendChild(b)}
 updateProgress();toggleDay(1);
+
+// 3D tilt on hover
+document.addEventListener('mousemove', function(e){
+  document.querySelectorAll('.card-scene:not(.flipped)').forEach(scene=>{
+    const r = scene.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top + r.height/2;
+    const dx = (e.clientX - cx) / r.width;
+    const dy = (e.clientY - cy) / r.height;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if(dist < 1.2){
+      const rotX = dy * -8;
+      const rotY = dx * 8;
+      scene.querySelector('.card-inner').style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    }
+  });
+});
+document.addEventListener('mouseleave', function(){
+  document.querySelectorAll('.card-scene:not(.flipped) .card-inner').forEach(ci=>{
+    ci.style.transform = '';
+  });
+});
+document.querySelectorAll('.card-scene').forEach(scene=>{
+  scene.addEventListener('mouseleave', ()=>{
+    if(!scene.classList.contains('flipped')){
+      scene.querySelector('.card-inner').style.transform = '';
+    }
+  });
+});
+
+// Confetti on mark done
+function spawnConfetti(btnEl){
+  const r = btnEl.getBoundingClientRect();
+  const cols=['#6366F1','#0D9488','#D97706','#E11D48','#16A34A','#F59E0B'];
+  for(let i=0;i<22;i++){
+    const c=document.createElement('div');
+    c.className='confetti-p';
+    c.style.cssText='left:'+(r.left+Math.random()*r.width)+'px;top:'+r.top+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*.3+'s;transform:translate('+(Math.random()-0.5)*120+'px,0)';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),2200);
+  }
+}
+// Patch done buttons
+document.querySelectorAll('.done-btn').forEach(btn=>{
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    const d = parseInt(this.id.replace('btn-',''));
+    if(!done.has(d)) spawnConfetti(this);
+    markDone(d);
+  });
+  // Remove inline onclick
+  btn.removeAttribute('onclick');
+});
+
 </script>
 </body>
 </html>
